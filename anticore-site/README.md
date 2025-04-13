@@ -1,2 +1,0 @@
-# anticore
-anticore project
