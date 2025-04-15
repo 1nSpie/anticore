@@ -73,7 +73,7 @@ export default function AutoPrice() {
       <div className="grid md:grid-cols-2 items-center gap-12">
         <div>
           <h1 className="text-3xl font-bold text-gray-800 sm:text-4xl lg:text-5xl lg:leading-tight dark:text-white">
-            Hire us
+            Почему мы?
           </h1>
           <p className="mt-1 md:text-lg text-gray-800 dark:text-neutral-200">
             We help brands and platforms turn big ideas into beautiful digital
@@ -158,56 +158,32 @@ export default function AutoPrice() {
 
             <form>
               {watch("triggerNotAuto") ? (
-                <div className="mt-6 grid gap-4 lg:gap-6">
-                  <div>
+                <div className="mt-6 grid gap-6">
+                  <div className="w-[100%]">
                     <label
-                      htmlFor="hs-work-email-hire-us-1"
-                      className="block mb-2 text-sm text-gray-700 font-medium dark:text-white"
+                      htmlFor="input-label"
+                      className="block text-sm font-medium mb-2 dark:text-white"
                     >
                       Марка
                     </label>
-                    <Select
-                      onValueChange={(v) => handleSelectAuto(v, EnumType.MARKA)}
-                    >
-                      <SelectTrigger className="w-[100%]">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem key={-1} value={"undefined"}>
-                          Выберите автомобиль
-                        </SelectItem>
-                        {auto.map((el, i) => (
-                          <SelectItem key={i} value={el.name}>
-                            {el.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                    <input
+                      id="input-label"
+                      className="py-2.5 h-[37px] sm:py-3 px-4 block w-full border-2 border-solid rounded-lg sm:text-sm  disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                      placeholder="BMW"
+                    />
                   </div>
-
-                  <div>
+                  <div className="w-[100%]">
                     <label
-                      htmlFor="hs-work-email-hire-us-1"
-                      className="block mb-2 text-sm text-gray-700 font-medium dark:text-white"
+                      htmlFor="input-label"
+                      className="block text-sm font-medium mb-2 dark:text-white"
                     >
                       Модель
                     </label>
-                    <Select
-                      onValueChange={(e) =>
-                        handleSelectAuto(String(e), EnumType.MODEL)
-                      }
-                    >
-                      <SelectTrigger className="w-[100%]">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {getValues("Marka")?.models.map((el, i) => (
-                          <SelectItem key={i} value={el.name}>
-                            {el.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                    <input
+                      id="input-label"
+                      className="py-2.5 h-[37px] sm:py-3 px-4 block w-full border-2 border-solid rounded-lg sm:text-sm  disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                      placeholder="X3"
+                    />
                   </div>
                 </div>
               ) : (
