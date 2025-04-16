@@ -28,14 +28,7 @@ export default function AutoPrice() {
   const [auto, setAuto] = useState<ApiResponse>([]);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const {
-    getValues,
-    register,
-    handleSubmit,
-    watch,
-    setValue,
-    formState: { errors },
-  } = useForm<Inputs>();
+  const { getValues, watch, setValue } = useForm<Inputs>();
   console.log(watch("triggerNotAuto"));
   useEffect(() => {
     handleGetAuto();
@@ -191,7 +184,7 @@ export default function AutoPrice() {
                   <div>
                     <label
                       htmlFor="hs-work-email-hire-us-1"
-                      className="block mb-2 text-sm text-gray-700 font-medium dark:text-white"
+                      className="block mb-2 text-sm font-medium dark:text-white"
                     >
                       Марка
                     </label>
@@ -217,7 +210,7 @@ export default function AutoPrice() {
                     <div>
                       <label
                         htmlFor="hs-work-email-hire-us-1"
-                        className="block mb-2 text-sm text-gray-700 font-medium dark:text-white"
+                        className="block mb-2 text-sm font-medium dark:text-white"
                       >
                         Модель
                       </label>
