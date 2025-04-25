@@ -1,47 +1,106 @@
 "use client";
 
-import { useState } from "react";
-import carousel1 from "../../../public/carousel1.png";
-import carousel2 from "../../../public/carousel2.jpg";
-import about1 from "../../../public/about1.png";
-
+import carousel1 from "../../../public/carousel1-Photoroom.png";
+import carousel2 from "../../../public/carousel2.png";
+import carousel3 from "../../../public/carousel3.png";
+import carousel4 from "../../../public/carousel4.png";
+import carousel5 from "../../../public/carousel5.png";
+import carousel6 from "../../../public/carousel6.png";
+import carousel7 from "../../../public/carousel7.png";
+import carousel8 from "../../../public/carousel8.png";
+import carousel9 from "../../../public/carousel9.png";
+import carousel10 from "../../../public/carousel10.png";
+import carousel11 from "../../../public/carousel11.png";
+import about1 from "../../../public/about1.svg";
+import about2 from "../../../public/about2.svg";
+import about3 from "../../../public/about3.svg";
+import about4 from "../../../public/about4.svg";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import Image from "next/image";
 
 const slides = [
   {
     id: 1,
-    title: "Mercasol 831",
+    title: "Dugla profi BPM 482",
     content:
-      "Антикор шведского бренда Mercasol, на основе технологии, идеальной для нашего климата",
+      "Мастика на битумно-восковой основе применяется для антикоррозионной, антигравийной и шумоизоляционной защиты днища автомобиля, колёсных арок",
     img: carousel1,
   },
   {
     id: 2,
-    title: "Tekko ML",
+    title: "Master Wax",
     content:
-      "Отечественный современный состав, не уступающий по эффективности иностранным аналогам",
+      "Преобразователь ржавчины- это эффективное средство для удаления ржавчины на основе фосфорорганических комплексов",
     img: carousel2,
   },
   {
     id: 3,
-    title: "Mercasol 831",
+    title: "Dugla profi ML",
     content:
-      "Антикор шведского бренда Mercasol, на основе технологии, идеальной для нашего климата",
-    img: carousel1,
+      "Водовытесняющий антикоррозионный состав на масляно-восковой основе с повышенной проникающей способностью. Останавливает начавшийся процесс коррозии",
+    img: carousel3,
   },
   {
     id: 4,
-    title: "Mercasol 831",
+    title: "Dinitrol 4010",
     content:
-      "Антикор шведского бренда Mercasol, на основе технологии, идеальной для нашего климата",
-    img: carousel1,
+      "Антикор для моторного отсекаю Создает прочную и прозрачную не боится кислот, щелочей и тд. Защищает от грязи, солей и коррозии",
+    img: carousel4,
   },
   {
     id: 5,
-    title: "Mercasol 831",
+    title: "Dugla profi W 2005",
     content:
-      "Антикор шведского бренда Mercasol, на основе технологии, идеальной для нашего климата",
-    img: carousel1,
+      "Легкопроникающий антикоррозионный состав на масляно-восковой основе. Заполняет все зазоры, глубоко проникает в микротрещины, пропитывает рыхлую пленку уже имеющихся очагов коррозии",
+    img: carousel5,
+  },
+  {
+    id: 6,
+    title: "Dinitrol 479",
+    content:
+      "Защитный состав из синтетической резины. Обеспечивает шумоизоляцию и препятствует коррозии",
+    img: carousel6,
+  },
+  {
+    id: 7,
+    title: "Prim ML",
+    content:
+      "Предохраняет скрытые полости автомобиля от коррозии и химических реагентов",
+    img: carousel7,
+  },
+  {
+    id: 8,
+    title: "Dinitrol Penetrant LT",
+    content:
+      "Инновационный антикоррозийный состав для труднодоступных полостей. Предотвращает появление и замедляет развитие имеющихся очагов коррозии",
+    img: carousel8,
+  },
+  {
+    id: 9,
+    title: "Prim Антишум",
+    content:
+      "Предохраняет корпус авто от коррозии, воздействия химичесикх реагентов. Обеспечивает шумоизоляцию и дополнительную теплоизоляцию",
+    img: carousel9,
+  },
+  {
+    id: 10,
+    title: "Dinitrol ML",
+    content:
+      "Останавливает процесс развития коррозии за счет глубокого пропитвыания ржавчины. Водовытесняющий состав",
+    img: carousel10,
+  },
+  {
+    id: 11,
+    title: "Prim Body",
+    content:
+      "Предохраняет корпус днища от коррозии, воздействия химичесиких реагентов. Обеспечивает шумоизоляцию и дополнительную теплоизоляцию",
+    img: carousel11,
   },
 ];
 
@@ -53,157 +112,77 @@ const icons = [
   },
   {
     id: 2,
-    description: "Лазерная очистка металла",
-    icon: about1,
+    description: "Гибкая система скидок",
+    icon: about2,
   },
   {
     id: 3,
-    description: "Лазерная очистка металла",
-    icon: about1,
+    description: "Сертефицированные материалы",
+    icon: about3,
   },
   {
     id: 4,
-    description: "Лазерная очистка металла",
-    icon: about1,
+    description: "Бесплатный трансфер",
+    icon: about4,
   },
 ];
 
-export default function Carousel() {
-  // Состояние для хранения индекса текущего слайда
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? slides.length - 1 : prevIndex - 1
-    );
-  };
-
-  // Обработчик для перехода к следующему слайду
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
-  };
-
+export default function CarouselSection() {
   return (
-    <div className="bg-gray-100">
-      <div className="max-w-[85rem] mx-auto h-auto ">
-        <div className="rounded-xl text-gray-800 dark:text-white block md:hidden max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto text-center">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4 ">
+    <div className="bg-background1 dark:bg-backgroundDark">
+      <div className="max-w-[85rem] mx-auto h-auto px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+        {/* Заголовок */}
+        <div className="rounded-xl text-black dark:text-white block max-w-[85rem] mx-auto text-center pb-10">
+          <h2 className="text-2xl font-bold text-black dark:text-white mb-4">
             Мы обрабатываем только проверенными материалами
           </h2>
-          <p className="text-gray-800 dark:text-white">
+          <p className="text-black dark:text-white">
             И делаем все только по технологическим картам производителей
           </p>
         </div>
+
         {/* Контейнер для карусели и блока информации */}
-        <div className="grid md:grid-cols-2 items-center gap-12 px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+        <div className="grid grid-cols-1 items-center gap-12">
           {/* Карусель */}
-          <div className="w-full relative ">
-            {/* Контейнер слайдов */}
-            <div className="hs-carousel relative overflow-hidden min-h-96 bg-white border border-gray-200 rounded-xl">
-              <div
-                className="hs-carousel-body absolute top-0 bottom-0 start-0 flex flex-nowrap transition-transform duration-700 w-[100%]"
-                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-              >
-                {slides.map((slide, key) => (
-                  <div key={key} className="hs-carousel-slide w-full shrink-0">
-                    <div className=" h-full bg-whitePower p-6 dark:bg-neutral-900">
-                      <div className="flex h-full justify-center items-center">
-                        <Image
-                          className="sm:w-40"
-                          src={slide.img}
-                          alt={"carousel1"}
-                          width={0}
-                          height={0}
-                        />
-                        <div className="pr-8 md:pr-4 flex flex-col max-w-1/2">
-                          <span className="self-center text-center text-4xl text-gray-800 transition duration-700 dark:text-white">
-                            {slide.title}
-                          </span>
-                          <span className="text-center self-center text-2xl text-gray-800 transition duration-700 dark:text-white">
-                            {slide.content}
-                          </span>
-                        </div>
+          <Carousel>
+            <CarouselContent className="pl-0">
+              {slides.map((slide, key) => (
+                <CarouselItem
+                  key={key}
+                  className="md:basis-1/2 lg:basis-1/3 w-full shrink-0"
+                >
+                  <div className="h-full border-orange border-2 p-2 dark:bg-backgroundDark1 rounded-2xl">
+                    <div className="flex flex-col items-center h-full text-center">
+                      {/* Изображение */}
+                      <Image
+                        src={slide.img}
+                        alt={slide.title}
+                        width={170}
+                        height={170}
+                        className="w-40 h-40 object-cover mb-4 fill-white"
+                      />
+                      {/* Текст */}
+                      <div className="flex flex-col items-center">
+                        <span className="text-xl font-bold text-black transition duration-700 dark:text-white">
+                          {slide.title}
+                        </span>
+                        <span className="text-sm text-black transition duration-700 dark:text-white">
+                          {slide.content}
+                        </span>
                       </div>
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Кнопка "Предыдущий" */}
-            <button
-              type="button"
-              onClick={prevSlide}
-              className="hs-carousel-prev hs-carousel-disabled:opacity-50 focus: hs-carousel-disabled:cursor-default absolute top-1/2 start-2 inline-flex justify-center items-center size-10 bg-white border border-gray-100 text-gray-800 rounded-full shadow-2xs hover:bg-gray-100 -translate-y-1/2 focus:outline-hidden"
-            >
-              <span className="text-2xl" aria-hidden="true">
-                <svg
-                  className="shrink-0 size-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="m15 18-6-6 6-6"></path>
-                </svg>
-              </span>
-              <span className="sr-only">Previous</span>
-            </button>
-
-            {/* Кнопка "Следующий" */}
-            <button
-              type="button"
-              onClick={nextSlide}
-              className="hs-carousel-next hs-carousel-disabled:opacity-50 hs-carousel-disabled:cursor-default absolute top-1/2 end-2 inline-flex justify-center items-center size-10 bg-white border border-gray-100 text-gray-800 rounded-full shadow-2xs hover:bg-gray-100 -translate-y-1/2 focus:outline-hidden"
-            >
-              <span className="sr-only">Next</span>
-              <span className="text-2xl" aria-hidden="true">
-                <svg
-                  className="shrink-0 size-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="m9 18 6-6-6-6"></path>
-                </svg>
-              </span>
-            </button>
-
-            {/* Индикаторы слайдов */}
-            <div className="hs-carousel-pagination justify-center absolute bottom-3 start-0 end-0 flex gap-x-2">
-              {slides.map((slide, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentIndex(index)}
-                  className={`w-3 h-3 rounded-full ${
-                    currentIndex === index ? "bg-orange-500" : "bg-gray-300"
-                  } hover:bg-orange-600`}
-                ></button>
+                </CarouselItem>
               ))}
-            </div>
-          </div>
+            </CarouselContent>
+            {/* Стрелки скрываются на мобильных и планшетах */}
+            <CarouselPrevious className="hidden md:flex" />
+            <CarouselNext className="hidden md:flex" />
+          </Carousel>
 
           {/* Блок с информацией */}
-          <div className="w-full h-full">
-            <div className="rounded-xl text-gray-800 dark:text-white hidden md:block">
-              <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4 ">
-                Мы обрабатываем только проверенными материалами
-              </h2>
-              <p className="text-gray-800 dark:text-white">
-                И делаем все только по технологическим картам производителей
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-4 mt-6 justify-items-center md:justify-items-center">
+          <div className="w-full">
+            <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
               {icons.map((el) => (
                 <div
                   key={el.id}
@@ -213,12 +192,12 @@ export default function Carousel() {
                   <Image
                     src={el.icon}
                     alt={el.description}
-                    width={100}
-                    height={100}
-                    className="w-24 h-24 object-cover mb-2"
+                    width={80}
+                    height={80}
+                    className="w-20 h-20 object-cover mb-2"
                   />
                   {/* Текст */}
-                  <p className="text-sm font-medium text-gray-800 dark:text-white">
+                  <p className="text-xs sm:text-sm font-medium text-black dark:text-white">
                     {el.description}
                   </p>
                 </div>

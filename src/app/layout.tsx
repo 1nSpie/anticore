@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Jost } from "next/font/google";
 import "./globals.css";
 import Navigation from "./components/Navigation";
-import Error from "next/error";
-import Custom404 from "@/pages/Custom404";
+// import Error from "next/error";
+// import Custom404 from "@/pages/Custom404";
 
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${jost.className} font-jost antialiased bg-whitePower`}
+        className={`${jost.className} font-jost antialiased bg-var[--background]`}
       >
         <Navigation />
         {children}
