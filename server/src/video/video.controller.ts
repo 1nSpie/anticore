@@ -1,29 +1,65 @@
-import {
-  Controller,
-  Get,
-  Query,
-  Res,
-  HttpStatus,
-  NotFoundException,
-} from '@nestjs/common';
-import { Response } from 'express';
+// src/video/video.controller.ts
+import { Controller, Get, Req, Res, HttpStatus } from '@nestjs/common';
+import { Request, Response } from 'express';
+import { createReadStream, Stats } from 'fs';
+import { statSync } from 'fs';
 import { join } from 'path';
-import { existsSync } from 'fs';
 
-@Controller('api/video')
+@Controller('video')
 export class VideoController {
-  private readonly VIDEO_DIR = join(process.cwd(), 'public', 'videos');
-
-  @Get()
-  async getVideo(@Query('name') name: string, @Res() res: Response) {
-    const filePath = join(this.VIDEO_DIR, name);
-
-    if (!existsSync(filePath)) {
-      throw new NotFoundException(`Видео "${name}" не найдено`);
+  @Get(':filename')
+  streamVideo(@Req() req: Request, @Res() res: Response) {
+    const filePath = join(
+      process.cwd(),
+      'public',
+      'video',
+      req.params.filename,
+    );
+    let videoStats: Stats;
+    try {
+      videoStats = statSync(filePath);
+    } catch {
+      return res.status(HttpStatus.NOT_FOUND).send('Видео не найдено');
     }
 
-    res.header('Content-Type', 'video/mp4');
-    res.header('Content-Disposition', 'inline'); // чтобы проигрывалось inline, а не скачивалось
-    return res.status(HttpStatus.OK).sendFile(filePath);
+    const fileSize = videoStats?.size;
+    const range = req.headers.range;
+
+    if (!range) {
+      // Полная загрузка
+      res.header({
+        'Content-Type': 'video/mp4',
+        'Content-Length': fileSize,
+      });
+
+      createReadStream(filePath).pipe(res);
+      return;
+    }
+
+    // Обработка Range
+    const parts = range.replace(/bytes=/, '').split('-');
+    const start = parseInt(parts[0], 10);
+    const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
+
+    if (start >= fileSize) {
+      return res
+        .status(HttpStatus.REQUESTED_RANGE_NOT_SATISFIABLE)
+        .header('Content-Range', `bytes */${fileSize}`)
+        .send('Requested range not satisfiable');
+    }
+
+    const chunkSize = end - start + 1;
+
+    res.header({
+      'Content-Type': 'video/mp4',
+      'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+      'Accept-Ranges': 'bytes',
+      'Content-Length': chunkSize,
+      'Cache-Control': 'public, max-age=31536000',
+    });
+
+    res.status(HttpStatus.PARTIAL_CONTENT);
+
+    createReadStream(filePath, { start, end }).pipe(res);
   }
 }

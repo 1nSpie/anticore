@@ -129,7 +129,7 @@ export default function Employee() {
 
           {/* Кнопка с анимацией положения */}
           <motion.button
-            className="w-full text-center mb-6 mt-10 py-2 px-4 bg-orange hover:bg-orange-500 text-white rounded-lg focus:outline-none"
+            className="w-full text-center mb-6 mt-10 py-2 px-4 bg-orange hover:bg-orangeDefaultHover dark:hover:bg-orange-500 text-white rounded-lg focus:outline-none"
             onClick={() => setIsAll((prev) => !prev)}
             initial={{ y: 0 }}
             animate={{

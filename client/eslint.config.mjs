@@ -8,6 +8,7 @@ const __dirname = dirname(__filename);
 const compat = new FlatCompat({
   baseDirectory: __dirname,
   rules: {
+    "react-hooks/exhaustive-deps": "off",
     "no-console": "off",
     "no-restricted-syntax": [
       "error",

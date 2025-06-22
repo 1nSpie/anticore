@@ -61,7 +61,7 @@ export default function YandexMap() {
           <div className="w-full h-[200px] md:h-[300px]">
             <YMaps
               query={{
-                apikey: process.env.REACT_APP_YMAP_KEY,
+                apikey: process.env.NEXT_PUBLIC_REACT_APP_YMAP_KEY,
                 lang: "ru_RU",
               }}
             >
@@ -89,7 +89,7 @@ export default function YandexMap() {
             <div className="flex items-center gap-2">
               <HomeIcon width={30} />
               <h1 className="text-xl md:text-3xl font-semibold text-gray-800 dark:text-white">
-                Коломна ,село Чанки, ул. Центральная 152
+                Коломна, село Чанки, ул. Центральная 152
               </h1>
             </div>
             <div className="flex items-center gap-2">
@@ -109,7 +109,7 @@ export default function YandexMap() {
           <div className="w-full h-[200px] md:h-[300px]">
             <YMaps
               query={{
-                apikey: process.env.REACT_APP_YMAP_KEY,
+                apikey: process.env.NEXT_PUBLIC_REACT_APP_YMAP_KEY,
                 lang: "ru_RU",
               }}
             >

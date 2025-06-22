@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono,  } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navigation from "./ui/Navigation";
 import { ThemeProvider } from "../lib/ThemeProvider";
 import Footer from "./ui/Footer";
+import ClientOnly from "./ui/ClientOnly";
+import Navigation from "./ui/Navigation";
 
 export const metadata: Metadata = {
   title: "PowerCor",
@@ -20,7 +21,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,7 +28,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased `}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -36,7 +38,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navigation />
-          <div className="z-20">{children}</div>
+          {children}
+          <ClientOnly />
           <Footer />
         </ThemeProvider>
       </body>

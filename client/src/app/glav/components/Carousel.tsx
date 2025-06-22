@@ -23,6 +23,8 @@ import {
   CarouselPrevious,
 } from "../../../shadcn/carousel";
 import Image from "next/image";
+import { useRef } from "react";
+import Autoplay from "embla-carousel-autoplay";
 
 const slides = [
   {
@@ -50,7 +52,7 @@ const slides = [
     id: 4,
     title: "Dinitrol 4010",
     content:
-      "Антикор для моторного отсекаю Создает прочную и прозрачную не боится кислот, щелочей и тд. Защищает от грязи, солей и коррозии",
+      "Антикор для моторного отсека. Создает прочную и прозрачную не боится кислот, щелочей и тд. Защищает от грязи, солей и коррозии",
     img: carousel4,
   },
   {
@@ -128,9 +130,11 @@ const icons = [
 ];
 
 export default function CarouselSection() {
+  const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
+
   return (
     <div className="bg-background1 dark:bg-backgroundDark">
-      <div className="max-w-[85rem] mx-auto h-auto px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+      <div className="max-w-[85rem] mx-auto h-auto px-8 py-10 sm:px-6 lg:px-20 lg:py-14">
         {/* Заголовок */}
         <div className="rounded-xl text-black dark:text-white block max-w-[85rem] mx-auto text-center pb-10">
           <h2 className="text-2xl font-bold text-black dark:text-white mb-4">
@@ -144,7 +148,15 @@ export default function CarouselSection() {
         {/* Контейнер для карусели и блока информации */}
         <div className="grid grid-cols-1 items-center gap-12">
           {/* Карусель */}
-          <Carousel>
+          <Carousel
+            plugins={[plugin.current]}
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            onMouseEnter={plugin.current.stop}
+            onMouseLeave={()=> plugin.current.play(true)}
+          >
             <CarouselContent className="pl-0">
               {slides.map((slide, key) => (
                 <CarouselItem
@@ -157,12 +169,12 @@ export default function CarouselSection() {
                       <Image
                         src={slide.img}
                         alt={slide.title}
-                        width={170}
-                        height={170}
-                        className="w-40 h-40 object-cover mb-4 fill-white"
+                        width={150}
+                        height={150}
+                        className="w-35 h-35 object-cover mb-4 fill-white"
                       />
                       {/* Текст */}
-                      <div className="flex flex-col items-center">
+                      <div className="flex flex-col text-center h-fit">
                         <span className="text-xl font-bold text-black transition duration-700 dark:text-white">
                           {slide.title}
                         </span>
@@ -176,8 +188,8 @@ export default function CarouselSection() {
               ))}
             </CarouselContent>
             {/* Стрелки скрываются на мобильных и планшетах */}
-            <CarouselPrevious className="hidden md:flex" />
-            <CarouselNext className="hidden md:flex" />
+            <CarouselPrevious className="hidden lg:flex" />
+            <CarouselNext className="hidden lg:flex" />
           </Carousel>
 
           {/* Блок с информацией */}

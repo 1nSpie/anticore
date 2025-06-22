@@ -5,32 +5,29 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URI")
+  url      = env("DATABASE_URL")
 }
 
 model Brand {
   id   Int    @id @default(autoincrement())
   name String
-  cars Car[]
+  Car  Car[]
 }
 
 model Car {
   id       Int       @id @default(autoincrement())
   model    String
   brandId  Int?
-  Brand    Brand?    @relation(fields: [brandId], references: [id])
   classId  Int?
-  CarClass CarClass? @relation(fields: [classId], references: [class])
+  Brand    Brand?    @relation(fields: [brandId], references: [id])
+  CarClass CarClass? @relation(fields: [classId], references: [id])
 }
 
 model CarClass {
-  id              Int   @id @default(autoincrement())
-  class           Int   @unique
-  complexPrice    Int
-  diamondPrice    Int
-  insulationPrice Int
-  antigravPrice   Int
-  Car             Car[]
+  id           Int   @id @default(autoincrement())
+  basePrice    Int
+  complexPrice Int
+  Car          Car[]
 }
 
 model Employee {

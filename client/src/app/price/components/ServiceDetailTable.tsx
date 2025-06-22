@@ -33,30 +33,42 @@ type Props = {
 export default function ServiceDetailTable({ service }: Props) {
   const isMobile = useMediaQuery("(max-width: 1023px)");
   if (isMobile) {
-    return (
-      <Accordion type="single" collapsible className="w-full">
-        <AccordionItem value="item-1">
-          <AccordionTrigger>Is it accessible?</AccordionTrigger>
-          <AccordionContent>
-            Yes. It adheres to the WAI-ARIA design pattern.
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="item-2">
-          <AccordionTrigger>Is it styled?</AccordionTrigger>
-          <AccordionContent>
-            Yes. It comes with default styles that matches the other
-            components&apos; aesthetic.
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="item-3">
-          <AccordionTrigger>Is it animated?</AccordionTrigger>
-          <AccordionContent>
-            Yes. It&apos;s animated by default, but you can disable it if you
-            prefer.
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
-    );
+    <div className="space-y-4 px-4 py-2">
+      {carType.map((carCategory) => {
+        return (
+          <Accordion key={carCategory} type="single" collapsible>
+            <AccordionItem value={carCategory}>
+              <AccordionTrigger className="text-lg font-semibold">
+                {carCategory}
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="space-y-2">
+                  {service.content.map((complex) => {
+                    const price = complex.prices.find(
+                      (p) => p.carType === carCategory
+                    )?.price;
+
+                    return (
+                      <div
+                        key={complex.name}
+                        className="flex justify-between items-center border-b pb-2"
+                      >
+                        <span className="text-sm text-gray-600 dark:text-gray-300">
+                          {complex.name}
+                        </span>
+                        <span className="font-medium">
+                          {price ? `${price} ₽` : "-"}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        );
+      })}
+    </div>;
   }
 
   return (

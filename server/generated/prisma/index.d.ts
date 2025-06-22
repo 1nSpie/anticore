@@ -256,8 +256,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.7.0
-   * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+   * Prisma Client JS version: 6.8.2
+   * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
    */
   export type PrismaVersion = {
     client: string
@@ -1142,11 +1142,11 @@ export namespace Prisma {
    */
 
   export type BrandCountOutputType = {
-    cars: number
+    Car: number
   }
 
   export type BrandCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    cars?: boolean | BrandCountOutputTypeCountCarsArgs
+    Car?: boolean | BrandCountOutputTypeCountCarArgs
   }
 
   // Custom InputTypes
@@ -1163,7 +1163,7 @@ export namespace Prisma {
   /**
    * BrandCountOutputType without action
    */
-  export type BrandCountOutputTypeCountCarsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrandCountOutputTypeCountCarArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CarWhereInput
   }
 
@@ -1377,7 +1377,7 @@ export namespace Prisma {
   export type BrandSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    cars?: boolean | Brand$carsArgs<ExtArgs>
+    Car?: boolean | Brand$CarArgs<ExtArgs>
     _count?: boolean | BrandCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["brand"]>
 
@@ -1398,7 +1398,7 @@ export namespace Prisma {
 
   export type BrandOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name", ExtArgs["result"]["brand"]>
   export type BrandInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    cars?: boolean | Brand$carsArgs<ExtArgs>
+    Car?: boolean | Brand$CarArgs<ExtArgs>
     _count?: boolean | BrandCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type BrandIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1407,7 +1407,7 @@ export namespace Prisma {
   export type $BrandPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Brand"
     objects: {
-      cars: Prisma.$CarPayload<ExtArgs>[]
+      Car: Prisma.$CarPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -1806,7 +1806,7 @@ export namespace Prisma {
    */
   export interface Prisma__BrandClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    cars<T extends Brand$carsArgs<ExtArgs> = {}>(args?: Subset<T, Brand$carsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CarPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Car<T extends Brand$CarArgs<ExtArgs> = {}>(args?: Subset<T, Brand$CarArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CarPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2226,9 +2226,9 @@ export namespace Prisma {
   }
 
   /**
-   * Brand.cars
+   * Brand.Car
    */
-  export type Brand$carsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Brand$CarArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Car
      */
@@ -3415,94 +3415,64 @@ export namespace Prisma {
 
   export type CarClassAvgAggregateOutputType = {
     id: number | null
-    class: number | null
+    basePrice: number | null
     complexPrice: number | null
-    diamondPrice: number | null
-    insulationPrice: number | null
-    antigravPrice: number | null
   }
 
   export type CarClassSumAggregateOutputType = {
     id: number | null
-    class: number | null
+    basePrice: number | null
     complexPrice: number | null
-    diamondPrice: number | null
-    insulationPrice: number | null
-    antigravPrice: number | null
   }
 
   export type CarClassMinAggregateOutputType = {
     id: number | null
-    class: number | null
+    basePrice: number | null
     complexPrice: number | null
-    diamondPrice: number | null
-    insulationPrice: number | null
-    antigravPrice: number | null
   }
 
   export type CarClassMaxAggregateOutputType = {
     id: number | null
-    class: number | null
+    basePrice: number | null
     complexPrice: number | null
-    diamondPrice: number | null
-    insulationPrice: number | null
-    antigravPrice: number | null
   }
 
   export type CarClassCountAggregateOutputType = {
     id: number
-    class: number
+    basePrice: number
     complexPrice: number
-    diamondPrice: number
-    insulationPrice: number
-    antigravPrice: number
     _all: number
   }
 
 
   export type CarClassAvgAggregateInputType = {
     id?: true
-    class?: true
+    basePrice?: true
     complexPrice?: true
-    diamondPrice?: true
-    insulationPrice?: true
-    antigravPrice?: true
   }
 
   export type CarClassSumAggregateInputType = {
     id?: true
-    class?: true
+    basePrice?: true
     complexPrice?: true
-    diamondPrice?: true
-    insulationPrice?: true
-    antigravPrice?: true
   }
 
   export type CarClassMinAggregateInputType = {
     id?: true
-    class?: true
+    basePrice?: true
     complexPrice?: true
-    diamondPrice?: true
-    insulationPrice?: true
-    antigravPrice?: true
   }
 
   export type CarClassMaxAggregateInputType = {
     id?: true
-    class?: true
+    basePrice?: true
     complexPrice?: true
-    diamondPrice?: true
-    insulationPrice?: true
-    antigravPrice?: true
   }
 
   export type CarClassCountAggregateInputType = {
     id?: true
-    class?: true
+    basePrice?: true
     complexPrice?: true
-    diamondPrice?: true
-    insulationPrice?: true
-    antigravPrice?: true
     _all?: true
   }
 
@@ -3594,11 +3564,8 @@ export namespace Prisma {
 
   export type CarClassGroupByOutputType = {
     id: number
-    class: number
+    basePrice: number
     complexPrice: number
-    diamondPrice: number
-    insulationPrice: number
-    antigravPrice: number
     _count: CarClassCountAggregateOutputType | null
     _avg: CarClassAvgAggregateOutputType | null
     _sum: CarClassSumAggregateOutputType | null
@@ -3622,43 +3589,31 @@ export namespace Prisma {
 
   export type CarClassSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    class?: boolean
+    basePrice?: boolean
     complexPrice?: boolean
-    diamondPrice?: boolean
-    insulationPrice?: boolean
-    antigravPrice?: boolean
     Car?: boolean | CarClass$CarArgs<ExtArgs>
     _count?: boolean | CarClassCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["carClass"]>
 
   export type CarClassSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    class?: boolean
+    basePrice?: boolean
     complexPrice?: boolean
-    diamondPrice?: boolean
-    insulationPrice?: boolean
-    antigravPrice?: boolean
   }, ExtArgs["result"]["carClass"]>
 
   export type CarClassSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    class?: boolean
+    basePrice?: boolean
     complexPrice?: boolean
-    diamondPrice?: boolean
-    insulationPrice?: boolean
-    antigravPrice?: boolean
   }, ExtArgs["result"]["carClass"]>
 
   export type CarClassSelectScalar = {
     id?: boolean
-    class?: boolean
+    basePrice?: boolean
     complexPrice?: boolean
-    diamondPrice?: boolean
-    insulationPrice?: boolean
-    antigravPrice?: boolean
   }
 
-  export type CarClassOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "class" | "complexPrice" | "diamondPrice" | "insulationPrice" | "antigravPrice", ExtArgs["result"]["carClass"]>
+  export type CarClassOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "basePrice" | "complexPrice", ExtArgs["result"]["carClass"]>
   export type CarClassInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Car?: boolean | CarClass$CarArgs<ExtArgs>
     _count?: boolean | CarClassCountOutputTypeDefaultArgs<ExtArgs>
@@ -3673,11 +3628,8 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      class: number
+      basePrice: number
       complexPrice: number
-      diamondPrice: number
-      insulationPrice: number
-      antigravPrice: number
     }, ExtArgs["result"]["carClass"]>
     composites: {}
   }
@@ -4103,11 +4055,8 @@ export namespace Prisma {
    */
   interface CarClassFieldRefs {
     readonly id: FieldRef<"CarClass", 'Int'>
-    readonly class: FieldRef<"CarClass", 'Int'>
+    readonly basePrice: FieldRef<"CarClass", 'Int'>
     readonly complexPrice: FieldRef<"CarClass", 'Int'>
-    readonly diamondPrice: FieldRef<"CarClass", 'Int'>
-    readonly insulationPrice: FieldRef<"CarClass", 'Int'>
-    readonly antigravPrice: FieldRef<"CarClass", 'Int'>
   }
     
 
@@ -5601,11 +5550,8 @@ export namespace Prisma {
 
   export const CarClassScalarFieldEnum: {
     id: 'id',
-    class: 'class',
-    complexPrice: 'complexPrice',
-    diamondPrice: 'diamondPrice',
-    insulationPrice: 'insulationPrice',
-    antigravPrice: 'antigravPrice'
+    basePrice: 'basePrice',
+    complexPrice: 'complexPrice'
   };
 
   export type CarClassScalarFieldEnum = (typeof CarClassScalarFieldEnum)[keyof typeof CarClassScalarFieldEnum]
@@ -5702,13 +5648,13 @@ export namespace Prisma {
     NOT?: BrandWhereInput | BrandWhereInput[]
     id?: IntFilter<"Brand"> | number
     name?: StringFilter<"Brand"> | string
-    cars?: CarListRelationFilter
+    Car?: CarListRelationFilter
   }
 
   export type BrandOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    cars?: CarOrderByRelationAggregateInput
+    Car?: CarOrderByRelationAggregateInput
   }
 
   export type BrandWhereUniqueInput = Prisma.AtLeast<{
@@ -5717,7 +5663,7 @@ export namespace Prisma {
     OR?: BrandWhereInput[]
     NOT?: BrandWhereInput | BrandWhereInput[]
     name?: StringFilter<"Brand"> | string
-    cars?: CarListRelationFilter
+    Car?: CarListRelationFilter
   }, "id">
 
   export type BrandOrderByWithAggregationInput = {
@@ -5798,44 +5744,32 @@ export namespace Prisma {
     OR?: CarClassWhereInput[]
     NOT?: CarClassWhereInput | CarClassWhereInput[]
     id?: IntFilter<"CarClass"> | number
-    class?: IntFilter<"CarClass"> | number
+    basePrice?: IntFilter<"CarClass"> | number
     complexPrice?: IntFilter<"CarClass"> | number
-    diamondPrice?: IntFilter<"CarClass"> | number
-    insulationPrice?: IntFilter<"CarClass"> | number
-    antigravPrice?: IntFilter<"CarClass"> | number
     Car?: CarListRelationFilter
   }
 
   export type CarClassOrderByWithRelationInput = {
     id?: SortOrder
-    class?: SortOrder
+    basePrice?: SortOrder
     complexPrice?: SortOrder
-    diamondPrice?: SortOrder
-    insulationPrice?: SortOrder
-    antigravPrice?: SortOrder
     Car?: CarOrderByRelationAggregateInput
   }
 
   export type CarClassWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    class?: number
     AND?: CarClassWhereInput | CarClassWhereInput[]
     OR?: CarClassWhereInput[]
     NOT?: CarClassWhereInput | CarClassWhereInput[]
+    basePrice?: IntFilter<"CarClass"> | number
     complexPrice?: IntFilter<"CarClass"> | number
-    diamondPrice?: IntFilter<"CarClass"> | number
-    insulationPrice?: IntFilter<"CarClass"> | number
-    antigravPrice?: IntFilter<"CarClass"> | number
     Car?: CarListRelationFilter
-  }, "id" | "class">
+  }, "id">
 
   export type CarClassOrderByWithAggregationInput = {
     id?: SortOrder
-    class?: SortOrder
+    basePrice?: SortOrder
     complexPrice?: SortOrder
-    diamondPrice?: SortOrder
-    insulationPrice?: SortOrder
-    antigravPrice?: SortOrder
     _count?: CarClassCountOrderByAggregateInput
     _avg?: CarClassAvgOrderByAggregateInput
     _max?: CarClassMaxOrderByAggregateInput
@@ -5848,11 +5782,8 @@ export namespace Prisma {
     OR?: CarClassScalarWhereWithAggregatesInput[]
     NOT?: CarClassScalarWhereWithAggregatesInput | CarClassScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"CarClass"> | number
-    class?: IntWithAggregatesFilter<"CarClass"> | number
+    basePrice?: IntWithAggregatesFilter<"CarClass"> | number
     complexPrice?: IntWithAggregatesFilter<"CarClass"> | number
-    diamondPrice?: IntWithAggregatesFilter<"CarClass"> | number
-    insulationPrice?: IntWithAggregatesFilter<"CarClass"> | number
-    antigravPrice?: IntWithAggregatesFilter<"CarClass"> | number
   }
 
   export type EmployeeWhereInput = {
@@ -5911,24 +5842,24 @@ export namespace Prisma {
 
   export type BrandCreateInput = {
     name: string
-    cars?: CarCreateNestedManyWithoutBrandInput
+    Car?: CarCreateNestedManyWithoutBrandInput
   }
 
   export type BrandUncheckedCreateInput = {
     id?: number
     name: string
-    cars?: CarUncheckedCreateNestedManyWithoutBrandInput
+    Car?: CarUncheckedCreateNestedManyWithoutBrandInput
   }
 
   export type BrandUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
-    cars?: CarUpdateManyWithoutBrandNestedInput
+    Car?: CarUpdateManyWithoutBrandNestedInput
   }
 
   export type BrandUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    cars?: CarUncheckedUpdateManyWithoutBrandNestedInput
+    Car?: CarUncheckedUpdateManyWithoutBrandNestedInput
   }
 
   export type BrandCreateManyInput = {
@@ -5947,7 +5878,7 @@ export namespace Prisma {
 
   export type CarCreateInput = {
     model: string
-    Brand?: BrandCreateNestedOneWithoutCarsInput
+    Brand?: BrandCreateNestedOneWithoutCarInput
     CarClass?: CarClassCreateNestedOneWithoutCarInput
   }
 
@@ -5960,7 +5891,7 @@ export namespace Prisma {
 
   export type CarUpdateInput = {
     model?: StringFieldUpdateOperationsInput | string
-    Brand?: BrandUpdateOneWithoutCarsNestedInput
+    Brand?: BrandUpdateOneWithoutCarNestedInput
     CarClass?: CarClassUpdateOneWithoutCarNestedInput
   }
 
@@ -5990,67 +5921,46 @@ export namespace Prisma {
   }
 
   export type CarClassCreateInput = {
-    class: number
+    basePrice: number
     complexPrice: number
-    diamondPrice: number
-    insulationPrice: number
-    antigravPrice: number
     Car?: CarCreateNestedManyWithoutCarClassInput
   }
 
   export type CarClassUncheckedCreateInput = {
     id?: number
-    class: number
+    basePrice: number
     complexPrice: number
-    diamondPrice: number
-    insulationPrice: number
-    antigravPrice: number
     Car?: CarUncheckedCreateNestedManyWithoutCarClassInput
   }
 
   export type CarClassUpdateInput = {
-    class?: IntFieldUpdateOperationsInput | number
+    basePrice?: IntFieldUpdateOperationsInput | number
     complexPrice?: IntFieldUpdateOperationsInput | number
-    diamondPrice?: IntFieldUpdateOperationsInput | number
-    insulationPrice?: IntFieldUpdateOperationsInput | number
-    antigravPrice?: IntFieldUpdateOperationsInput | number
     Car?: CarUpdateManyWithoutCarClassNestedInput
   }
 
   export type CarClassUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    class?: IntFieldUpdateOperationsInput | number
+    basePrice?: IntFieldUpdateOperationsInput | number
     complexPrice?: IntFieldUpdateOperationsInput | number
-    diamondPrice?: IntFieldUpdateOperationsInput | number
-    insulationPrice?: IntFieldUpdateOperationsInput | number
-    antigravPrice?: IntFieldUpdateOperationsInput | number
     Car?: CarUncheckedUpdateManyWithoutCarClassNestedInput
   }
 
   export type CarClassCreateManyInput = {
     id?: number
-    class: number
+    basePrice: number
     complexPrice: number
-    diamondPrice: number
-    insulationPrice: number
-    antigravPrice: number
   }
 
   export type CarClassUpdateManyMutationInput = {
-    class?: IntFieldUpdateOperationsInput | number
+    basePrice?: IntFieldUpdateOperationsInput | number
     complexPrice?: IntFieldUpdateOperationsInput | number
-    diamondPrice?: IntFieldUpdateOperationsInput | number
-    insulationPrice?: IntFieldUpdateOperationsInput | number
-    antigravPrice?: IntFieldUpdateOperationsInput | number
   }
 
   export type CarClassUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    class?: IntFieldUpdateOperationsInput | number
+    basePrice?: IntFieldUpdateOperationsInput | number
     complexPrice?: IntFieldUpdateOperationsInput | number
-    diamondPrice?: IntFieldUpdateOperationsInput | number
-    insulationPrice?: IntFieldUpdateOperationsInput | number
-    antigravPrice?: IntFieldUpdateOperationsInput | number
   }
 
   export type EmployeeCreateInput = {
@@ -6276,47 +6186,32 @@ export namespace Prisma {
 
   export type CarClassCountOrderByAggregateInput = {
     id?: SortOrder
-    class?: SortOrder
+    basePrice?: SortOrder
     complexPrice?: SortOrder
-    diamondPrice?: SortOrder
-    insulationPrice?: SortOrder
-    antigravPrice?: SortOrder
   }
 
   export type CarClassAvgOrderByAggregateInput = {
     id?: SortOrder
-    class?: SortOrder
+    basePrice?: SortOrder
     complexPrice?: SortOrder
-    diamondPrice?: SortOrder
-    insulationPrice?: SortOrder
-    antigravPrice?: SortOrder
   }
 
   export type CarClassMaxOrderByAggregateInput = {
     id?: SortOrder
-    class?: SortOrder
+    basePrice?: SortOrder
     complexPrice?: SortOrder
-    diamondPrice?: SortOrder
-    insulationPrice?: SortOrder
-    antigravPrice?: SortOrder
   }
 
   export type CarClassMinOrderByAggregateInput = {
     id?: SortOrder
-    class?: SortOrder
+    basePrice?: SortOrder
     complexPrice?: SortOrder
-    diamondPrice?: SortOrder
-    insulationPrice?: SortOrder
-    antigravPrice?: SortOrder
   }
 
   export type CarClassSumOrderByAggregateInput = {
     id?: SortOrder
-    class?: SortOrder
+    basePrice?: SortOrder
     complexPrice?: SortOrder
-    diamondPrice?: SortOrder
-    insulationPrice?: SortOrder
-    antigravPrice?: SortOrder
   }
 
   export type EmployeeCountOrderByAggregateInput = {
@@ -6405,9 +6300,9 @@ export namespace Prisma {
     deleteMany?: CarScalarWhereInput | CarScalarWhereInput[]
   }
 
-  export type BrandCreateNestedOneWithoutCarsInput = {
-    create?: XOR<BrandCreateWithoutCarsInput, BrandUncheckedCreateWithoutCarsInput>
-    connectOrCreate?: BrandCreateOrConnectWithoutCarsInput
+  export type BrandCreateNestedOneWithoutCarInput = {
+    create?: XOR<BrandCreateWithoutCarInput, BrandUncheckedCreateWithoutCarInput>
+    connectOrCreate?: BrandCreateOrConnectWithoutCarInput
     connect?: BrandWhereUniqueInput
   }
 
@@ -6417,14 +6312,14 @@ export namespace Prisma {
     connect?: CarClassWhereUniqueInput
   }
 
-  export type BrandUpdateOneWithoutCarsNestedInput = {
-    create?: XOR<BrandCreateWithoutCarsInput, BrandUncheckedCreateWithoutCarsInput>
-    connectOrCreate?: BrandCreateOrConnectWithoutCarsInput
-    upsert?: BrandUpsertWithoutCarsInput
+  export type BrandUpdateOneWithoutCarNestedInput = {
+    create?: XOR<BrandCreateWithoutCarInput, BrandUncheckedCreateWithoutCarInput>
+    connectOrCreate?: BrandCreateOrConnectWithoutCarInput
+    upsert?: BrandUpsertWithoutCarInput
     disconnect?: BrandWhereInput | boolean
     delete?: BrandWhereInput | boolean
     connect?: BrandWhereUniqueInput
-    update?: XOR<XOR<BrandUpdateToOneWithWhereWithoutCarsInput, BrandUpdateWithoutCarsInput>, BrandUncheckedUpdateWithoutCarsInput>
+    update?: XOR<XOR<BrandUpdateToOneWithWhereWithoutCarInput, BrandUpdateWithoutCarInput>, BrandUncheckedUpdateWithoutCarInput>
   }
 
   export type CarClassUpdateOneWithoutCarNestedInput = {
@@ -6641,35 +6536,29 @@ export namespace Prisma {
     classId?: IntNullableFilter<"Car"> | number | null
   }
 
-  export type BrandCreateWithoutCarsInput = {
+  export type BrandCreateWithoutCarInput = {
     name: string
   }
 
-  export type BrandUncheckedCreateWithoutCarsInput = {
+  export type BrandUncheckedCreateWithoutCarInput = {
     id?: number
     name: string
   }
 
-  export type BrandCreateOrConnectWithoutCarsInput = {
+  export type BrandCreateOrConnectWithoutCarInput = {
     where: BrandWhereUniqueInput
-    create: XOR<BrandCreateWithoutCarsInput, BrandUncheckedCreateWithoutCarsInput>
+    create: XOR<BrandCreateWithoutCarInput, BrandUncheckedCreateWithoutCarInput>
   }
 
   export type CarClassCreateWithoutCarInput = {
-    class: number
+    basePrice: number
     complexPrice: number
-    diamondPrice: number
-    insulationPrice: number
-    antigravPrice: number
   }
 
   export type CarClassUncheckedCreateWithoutCarInput = {
     id?: number
-    class: number
+    basePrice: number
     complexPrice: number
-    diamondPrice: number
-    insulationPrice: number
-    antigravPrice: number
   }
 
   export type CarClassCreateOrConnectWithoutCarInput = {
@@ -6677,22 +6566,22 @@ export namespace Prisma {
     create: XOR<CarClassCreateWithoutCarInput, CarClassUncheckedCreateWithoutCarInput>
   }
 
-  export type BrandUpsertWithoutCarsInput = {
-    update: XOR<BrandUpdateWithoutCarsInput, BrandUncheckedUpdateWithoutCarsInput>
-    create: XOR<BrandCreateWithoutCarsInput, BrandUncheckedCreateWithoutCarsInput>
+  export type BrandUpsertWithoutCarInput = {
+    update: XOR<BrandUpdateWithoutCarInput, BrandUncheckedUpdateWithoutCarInput>
+    create: XOR<BrandCreateWithoutCarInput, BrandUncheckedCreateWithoutCarInput>
     where?: BrandWhereInput
   }
 
-  export type BrandUpdateToOneWithWhereWithoutCarsInput = {
+  export type BrandUpdateToOneWithWhereWithoutCarInput = {
     where?: BrandWhereInput
-    data: XOR<BrandUpdateWithoutCarsInput, BrandUncheckedUpdateWithoutCarsInput>
+    data: XOR<BrandUpdateWithoutCarInput, BrandUncheckedUpdateWithoutCarInput>
   }
 
-  export type BrandUpdateWithoutCarsInput = {
+  export type BrandUpdateWithoutCarInput = {
     name?: StringFieldUpdateOperationsInput | string
   }
 
-  export type BrandUncheckedUpdateWithoutCarsInput = {
+  export type BrandUncheckedUpdateWithoutCarInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
   }
@@ -6709,25 +6598,19 @@ export namespace Prisma {
   }
 
   export type CarClassUpdateWithoutCarInput = {
-    class?: IntFieldUpdateOperationsInput | number
+    basePrice?: IntFieldUpdateOperationsInput | number
     complexPrice?: IntFieldUpdateOperationsInput | number
-    diamondPrice?: IntFieldUpdateOperationsInput | number
-    insulationPrice?: IntFieldUpdateOperationsInput | number
-    antigravPrice?: IntFieldUpdateOperationsInput | number
   }
 
   export type CarClassUncheckedUpdateWithoutCarInput = {
     id?: IntFieldUpdateOperationsInput | number
-    class?: IntFieldUpdateOperationsInput | number
+    basePrice?: IntFieldUpdateOperationsInput | number
     complexPrice?: IntFieldUpdateOperationsInput | number
-    diamondPrice?: IntFieldUpdateOperationsInput | number
-    insulationPrice?: IntFieldUpdateOperationsInput | number
-    antigravPrice?: IntFieldUpdateOperationsInput | number
   }
 
   export type CarCreateWithoutCarClassInput = {
     model: string
-    Brand?: BrandCreateNestedOneWithoutCarsInput
+    Brand?: BrandCreateNestedOneWithoutCarInput
   }
 
   export type CarUncheckedCreateWithoutCarClassInput = {
@@ -6793,7 +6676,7 @@ export namespace Prisma {
 
   export type CarUpdateWithoutCarClassInput = {
     model?: StringFieldUpdateOperationsInput | string
-    Brand?: BrandUpdateOneWithoutCarsNestedInput
+    Brand?: BrandUpdateOneWithoutCarNestedInput
   }
 
   export type CarUncheckedUpdateWithoutCarClassInput = {
