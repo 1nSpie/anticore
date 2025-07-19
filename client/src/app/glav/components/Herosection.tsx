@@ -36,7 +36,7 @@ export default function Herosection() {
           <h1 className="block text-3xl font-bold sm:text-4xl lg:text-6xl lg:leading-tight text-gray-800 dark:text-white mb-5">
             Защитим ваш автомобиль от коррозии
           </h1>
-          <h1 className="block text-3xl font-bold sm:text-4xl lg:text-6xl lg:leading-tight text-orange-500 dark:text-orange-400">
+          <h1 className="block text-3xl font-bold sm:text-4xl lg:text-6xl lg:leading-tight text-orangeDefault dark:text-orangeDefault">
             ANTICORE
           </h1>
           <p className="mt-3 text-lg text-gray-700 dark:text-gray-300">
@@ -47,7 +47,7 @@ export default function Herosection() {
           <Dialog>
             <DialogTrigger asChild>
               <div className="mt-7 grid gap-3 w-full content-center">
-                <a className="py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-orange-500 bg-background1 dark:bg-gray-800 text-gray-800 dark:text-white shadow-md hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 disabled:opacity-50 disabled:pointer-events-none">
+                <a className="py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-orangeDefault bg-background1 dark:bg-gray-800 text-gray-800 dark:text-white shadow-md hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 disabled:opacity-50 disabled:pointer-events-none">
                   Заказать обратный звонок
                 </a>
               </div>

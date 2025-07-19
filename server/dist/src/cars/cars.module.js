@@ -10,14 +10,13 @@ exports.CarsModule = void 0;
 const common_1 = require("@nestjs/common");
 const cars_service_1 = require("./cars.service");
 const cars_controller_1 = require("./cars.controller");
-const prisma_service_1 = require("../prisma.service");
 let CarsModule = class CarsModule {
 };
 exports.CarsModule = CarsModule;
 exports.CarsModule = CarsModule = __decorate([
     (0, common_1.Module)({
         controllers: [cars_controller_1.CarsController],
-        providers: [cars_service_1.CarsService, prisma_service_1.PrismaService],
+        providers: [cars_service_1.CarsService],
     })
 ], CarsModule);
 //# sourceMappingURL=cars.module.js.map

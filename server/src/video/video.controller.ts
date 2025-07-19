@@ -9,11 +9,33 @@ import { join } from 'path';
 export class VideoController {
   @Get(':filename')
   streamVideo(@Req() req: Request, @Res() res: Response) {
+    const filename = req.params.filename;
+    
+    // Validate file extension and determine content type
+    const getContentType = (filename: string) => {
+      const ext = filename.toLowerCase().split('.').pop();
+      switch (ext) {
+        case 'mp4':
+          return 'video/mp4';
+        case 'webm':
+          return 'video/webm';
+        case 'ogg':
+          return 'video/ogg';
+        default:
+          return null;
+      }
+    };
+    
+    const contentType = getContentType(filename);
+    if (!contentType) {
+      return res.status(HttpStatus.BAD_REQUEST).send('Unsupported video format');
+    }
+    
     const filePath = join(
       process.cwd(),
       'public',
       'video',
-      req.params.filename,
+      filename,
     );
     let videoStats: Stats;
     try {
@@ -28,7 +50,7 @@ export class VideoController {
     if (!range) {
       // Полная загрузка
       res.header({
-        'Content-Type': 'video/mp4',
+        'Content-Type': contentType,
         'Content-Length': fileSize,
       });
 
@@ -51,7 +73,7 @@ export class VideoController {
     const chunkSize = end - start + 1;
 
     res.header({
-      'Content-Type': 'video/mp4',
+      'Content-Type': contentType,
       'Content-Range': `bytes ${start}-${end}/${fileSize}`,
       'Accept-Ranges': 'bytes',
       'Content-Length': chunkSize,

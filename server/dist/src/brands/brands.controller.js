@@ -14,26 +14,38 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BrandsController = void 0;
 const common_1 = require("@nestjs/common");
-const prisma_service_1 = require("../prisma.service");
+const prisma_service_1 = require("../prisma/prisma.service");
 let BrandsController = class BrandsController {
     prisma;
     constructor(prisma) {
         this.prisma = prisma;
     }
-    findAllCarWithBrand(id) {
+    async findAllCarWithBrand(id) {
         const numericId = parseInt(id, 10);
         if (isNaN(numericId)) {
             throw new Error('ID бренда должен быть числом');
         }
-        return this.prisma.car.findMany({
+        const cars = await this.prisma.car.findMany({
             where: {
                 brandId: numericId,
             },
-            include: {
-                CarClass: true,
-                Brand: false,
+        });
+        const segments = [...new Set(cars.map((car) => car.segment))];
+        const priceRecords = await this.prisma.bodyTypePrice.findMany({
+            where: {
+                segment: {
+                    in: segments,
+                },
             },
         });
+        const carsWithPrices = cars.map((car) => {
+            const priceInfo = priceRecords?.find((p) => p.segment === car.segment);
+            return {
+                ...car,
+                prices: priceInfo || null,
+            };
+        });
+        return carsWithPrices;
     }
 };
 exports.BrandsController = BrandsController;
@@ -42,7 +54,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], BrandsController.prototype, "findAllCarWithBrand", null);
 exports.BrandsController = BrandsController = __decorate([
     (0, common_1.Controller)('brands'),

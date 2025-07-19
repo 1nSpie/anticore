@@ -1,73 +1,72 @@
 "use client";
 
 import React from "react";
-
 import StepCard from "@/app/ui/ui/StepsTechProccesCard";
+import clear from "public/techprocces/clear.svg";
+import diag from "public/techprocces/diag.svg";
+import garanty from "public/techprocces/garanty.svg";
+import mask from "public/techprocces/mask.svg";
+import razb from "public/techprocces/razb.svg";
+import sushka from "public/techprocces/sushka.svg";
+import wash from "public/techprocces/wash.svg";
+
 export interface Step {
   title: string;
   description: string;
   icon: string;
 }
 
+type Props = {
+  id: string;
+};
+
 export const stepsData: Step[] = [
   {
     title: "Диагностика",
     description:
       "Производим осмотр авто. По итогам осмотра и Ваших пожеланий, составляется перечень работ.",
-    icon: "/images/steps/diagnosis.jpg",
+    icon: diag,
   },
   {
     title: "Разборка",
     description:
       "Снимаются колеса, подкрылки, пластиковые накладки. В отдельных случаях снимаются бампер, фары и фонари.",
-    icon: "/images/steps/disassembly.jpg",
+    icon: razb,
   },
   {
     title: "Мойка",
     description: "Мойка днища специальным составом под большим давлением.",
-    icon: "/images/steps/washing.jpg",
+    icon: wash,
   },
   {
     title: "Сушка",
     description:
       "Днище и полости продувается сжатым воздухом, после чего автомобиль сушится тепловыми пушками. Для просушки скрытых полостей используется турбосушка.",
-    icon: "/images/steps/drying.jpg",
+    icon: sushka,
   },
   {
     title: "Маскировка",
     description:
       "Маскируется кузов авто, далее тормозная и выхлопная системы, элементы подвески и трансмиссии.",
-    icon: "/images/steps/masking.jpg",
+    icon: mask,
   },
   {
     title: "Зачистка",
     description:
       "Очаги коррозии зачищаются при помощи пневмо- и электроинструмента различной конфигурации.",
-    icon: "/images/steps/cleaning.jpg",
-  },
-  {
-    title: "Скрытые полости",
-    description:
-      "В первую очередь, обрабатываются скрытые полости, для этого используются конвертирующие МЛ составы.",
-    icon: "/images/steps/hidden-parts.jpg",
-  },
-  {
-    title: "Днище и арки",
-    description:
-      "Днище и арки обрабатываются износостойкими составами, возможно применение составов с шумопоглощением.",
-    icon: "/images/steps/bottom-and-arches.jpg",
+    icon: clear,
   },
   {
     title: "Гарантийный талон",
     description:
       "После того, как Вы осмотрите автомобиль и примете работу, менеджер выпишет Вам гарантийный талон.",
-    icon: "/images/steps/guarantee.jpg",
+    icon: garanty,
   },
 ];
 
-export default function TechProcces() {
+export default function TechProcces({ id }: Props) {
   return (
-    <div className="bg-background1 dark:bg-backgroundDark">
+    <section id={id} className="bg-background1 dark:bg-backgroundDark">
       <div className="max-w-[85rem] mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold sm:text-4xl lg:text-5xl lg:leading-tight text-black dark:text-white text-center mb-4">
           Этапы работ
@@ -78,6 +77,6 @@ export default function TechProcces() {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

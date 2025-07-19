@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
 import car1 from "../../../../public/Auto_A_Class.png";
 import car2 from "../../../../public/Auto_B_Class.png";
 import car3 from "../../../../public/Auto_C_Class.png";
@@ -88,10 +89,22 @@ const products = [
   },
 ];
 
-export default function PriceCardList() {
+type Props = {
+  id: string;
+};
+
+export default function PriceCardList({ id }: Props) {
   function PriceCard() {
-    return products.map((product) => (
-      <div key={product.id} className="group">
+    return products.map((product, index) => (
+      <motion.section 
+        id={id}  
+        key={product.id} 
+        className="group"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6, delay: index * 0.1 }}
+      >
         <div className="lg:h-[50px]">
           <Image className="" alt={product.imageAlt} src={product.imageSrc} />
         </div>
@@ -128,17 +141,23 @@ export default function PriceCardList() {
           </div>
         </div>
         <div className="lg:hidden block w-full border-2 mt-4 border-orangeDefault"></div>
-      </div>
+      </motion.section>
     ));
   }
 
   return (
     <div className="bg-background dark:bg-backgroundDark">
-      <div className="mx-auto max-w-[85rem] px-4 py-16 sm:px-6 sm:py-24  lg:px-8">
+      <motion.div 
+        className="mx-auto max-w-[85rem] px-4 py-16 sm:px-6 sm:py-24  lg:px-8"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
         <div className="grid grid-cols-1 gap-x-6 gap-y-10 lg:grid-cols-2 xl:grid-cols-3 xl:gap-x-8 ">
           {PriceCard()}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

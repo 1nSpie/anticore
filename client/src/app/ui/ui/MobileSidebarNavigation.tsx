@@ -54,13 +54,13 @@ export default function MobileSidebarNavigation() {
                 </a>
               ))}
             </nav>
-          </div>
-
           <div className="p-4 border-t border-gray-200 dark:border-gray-700">
             <div className="flex items-center justify-between">
               <ThemeSwitcher />
             </div>
           </div>
+          </div>
+
         </div>
       </div>
     </div>

@@ -1,10 +1,8 @@
 import Link from "next/link";
-import Navigation from "../ui/Navigation";
 
 export default function PrivacyPolicyPage() {
   return (
     <>
-      <Navigation />
       <div className="min-h-screen bg-background dark:bg-backgroundDark py-12 px-6">
         <div className="max-w-4xl mx-auto bg-background1 dark:bg-backgroundDark1 shadow-lg rounded-lg p-8">
           <h1 className="text-3xl font-bold text-center text-black dark:text-white mb-6">
@@ -501,7 +499,7 @@ export default function PrivacyPolicyPage() {
           <div className="text-center mt-8">
             <Link
               href="/glav"
-              className="inline-block px-6 py-2 bg-orange text-white rounded-md hover:bg-orangeDefaultHover dark:hover:bg-orange-500 transition"
+              className="inline-block px-6 py-2 bg-orange text-white rounded-md hover:bg-orangeDefaultHover dark:hover:bg-orangeDefault transition"
             >
               Вернуться на главную
             </Link>

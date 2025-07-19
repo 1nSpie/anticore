@@ -21,7 +21,7 @@ export default function Custom404() {
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <a
               href="/glav"
-              className="rounded-md bg-orange px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:orange-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
+              className="rounded-md bg-orange px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:orangeDefault focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
             >
               Вернуться на главную
             </a>

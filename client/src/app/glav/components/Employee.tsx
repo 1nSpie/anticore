@@ -34,7 +34,7 @@ export default function Employee() {
 
   return (
     <div className="bg-background dark:bg-backgroundDark">
-      <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+      <div className="max-w-[85rem] px-4 py-16 sm:px-6 lg:px-8 lg:py-20 mx-auto">
         {/* Заголовок */}
         <div className="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
           <h2 className="text-2xl font-bold md:text-4xl md:leading-tight text-black dark:text-white">
@@ -50,7 +50,7 @@ export default function Employee() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex flex-col rounded-xl p-4 md:p-6 bg-white border border-gray-200 dark:bg-backgroundDark1 dark:border-orange"
+              className="flex flex-col rounded-xl p-4 md:p-6 bg-white border border-gray-200 dark:bg-backgroundDark1 dark:border-orangeDefault hover:shadow-lg transition-all duration-300"
             >
               <div className="flex items-center gap-x-4">
                 <Image
@@ -97,7 +97,7 @@ export default function Employee() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -20 }}
                       transition={{ duration: 0.3, delay: index * 0.05 }}
-                      className="flex flex-col rounded-xl p-4 md:p-6 bg-white border border-gray-200 dark:bg-backgroundDark1 dark:border-orange"
+                      className="flex flex-col rounded-xl p-4 md:p-6 bg-white border border-gray-200 dark:bg-backgroundDark1 dark:border-orangeDefault hover:shadow-lg transition-all duration-300"
                     >
                       <div className="flex items-center gap-x-4">
                         <Image
@@ -129,7 +129,7 @@ export default function Employee() {
 
           {/* Кнопка с анимацией положения */}
           <motion.button
-            className="w-full text-center mb-6 mt-10 py-2 px-4 bg-orange hover:bg-orangeDefaultHover dark:hover:bg-orange-500 text-white rounded-lg focus:outline-none"
+            className="w-full text-center mb-6 mt-10 py-2 px-4 bg-orangeDefault hover:bg-orangeDefaultHover text-white rounded-lg focus:outline-none transition-colors"
             onClick={() => setIsAll((prev) => !prev)}
             initial={{ y: 0 }}
             animate={{

@@ -18,57 +18,61 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/shadcn/accordion";
-import { ArrowLeftIcon } from "@heroicons/react/24/outline";
+import { ArrowLeftIcon, InformationCircleIcon } from "@heroicons/react/24/outline";
 import { Button } from "@/shadcn/button";
-import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from "@/shadcn/hover-card";
+
 type Props = {
   service: ServicePackage;
 };
 
 export default function ServiceDetailTable({ service }: Props) {
   const isMobile = useMediaQuery("(max-width: 1023px)");
-  if (isMobile) {
-    <div className="space-y-4 px-4 py-2">
-      {carType.map((carCategory) => {
-        return (
-          <Accordion key={carCategory} type="single" collapsible>
-            <AccordionItem value={carCategory}>
-              <AccordionTrigger className="text-lg font-semibold">
-                {carCategory}
-              </AccordionTrigger>
-              <AccordionContent>
-                <div className="space-y-2">
-                  {service.content.map((complex) => {
-                    const price = complex.prices.find(
-                      (p) => p.carType === carCategory
-                    )?.price;
 
-                    return (
-                      <div
-                        key={complex.name}
-                        className="flex justify-between items-center border-b pb-2"
-                      >
-                        <span className="text-sm text-gray-600 dark:text-gray-300">
-                          {complex.name}
-                        </span>
-                        <span className="font-medium">
-                          {price ? `${price} ₽` : "-"}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        );
-      })}
-    </div>;
+  if (isMobile) {
+    return (
+      <div className="space-y-4 px-4 py-2">
+        {carType.map((carCategory) => {
+          return (
+            <Accordion key={carCategory} type="single" collapsible>
+              <AccordionItem value={carCategory}>
+                <AccordionTrigger className="text-lg font-semibold flex justify-between items-center p-3 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md">
+                  {carCategory}
+                  <InformationCircleIcon className="w-5 h-5 text-orange-500" />
+                </AccordionTrigger>
+                <AccordionContent className="bg-white dark:bg-gray-900 rounded-lg p-4 shadow-inner">
+                  <div className="space-y-2">
+                    {service.content.map((complex) => {
+                      const price = complex.prices.find(
+                        (p) => p.carType === carCategory
+                      )?.price;
+
+                      return (
+                        <div
+                          key={complex.name}
+                          className="flex justify-between items-center border-b pb-2"
+                        >
+                          <span className="text-sm text-gray-600 dark:text-gray-300">
+                            {complex.name}
+                          </span>
+                          <span className="font-medium text-gray-900 dark:text-white">
+                            {price ? `${price} ₽` : "-"}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          );
+        })}
+      </div>
+    );
   }
 
   return (
@@ -82,16 +86,16 @@ export default function ServiceDetailTable({ service }: Props) {
         >
           <ArrowLeftIcon color="orange" />
         </Button>
-        <div className="text-center w-full border-e-2 border-orange">
+        <div className="text-center w-full border-b-2 border-orange-500">
           {service.title}
         </div>
       </div>
-      <Table className="min-w-[600px] border-collapse table-auto w-full">
+      <Table className="min-w-[600px] bg-white dark:bg-gray-800 shadow-lg rounded-xl overflow-hidden">
         <TableHeader>
-          <TableRow className="bg-gray-100 dark:bg-gray-700">
+          <TableRow className="bg-gray-200 dark:bg-gray-700">
             <TableHead
               align="center"
-              className="py-4 px-6 font-semibold text-base text-gray-800 dark:text-gray-200 whitespace-nowrap"
+              className="py-4 px-6 font-semibold text-sm text-gray-700 dark:text-gray-300 whitespace-nowrap"
             >
               Категория авто
             </TableHead>
@@ -99,33 +103,29 @@ export default function ServiceDetailTable({ service }: Props) {
               <TableHead
                 align="center"
                 key={idx}
-                className="py-4 px-6 font-semibold text-base text-center text-gray-800 dark:text-gray-200 whitespace-nowrap content-center"
+                className="py-4 px-6 font-semibold text-sm text-center text-gray-700 dark:text-gray-300 whitespace-nowrap"
               >
                 <HoverCard key={idx}>
                   <HoverCardTrigger asChild className="cursor-pointer">
-                    <div className="flex items-center justify-center">
-                      <div className="text-inherit">{complex.name}</div>
+                    <div className="flex items-center justify-center gap-2">
+                      <span>{complex.name}</span>
                       <Button variant="link" size="icon">
-                        <InformationCircleIcon />
+                        <InformationCircleIcon className="w-5 h-5 text-orange-500" />
                       </Button>
                     </div>
                   </HoverCardTrigger>
-                  <HoverCardContent className="w-fit bg-background dark:bg-backgroundDark rounded-lg p-4 HoverCardContent">
-                    <div className="">
-                      <div className="space-y-1">
-                        <h2 className="text-md font-semibold text-center">
-                          Пошаговый процесс работы
-                        </h2>
-                        <div>
-                          <ul>
-                            {complex.steps.map((value, index) => (
-                              <li key={index} className="flex items-center">
-                                {value}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
+                  <HoverCardContent className="w-fit bg-white dark:bg-gray-900 rounded-lg p-4">
+                    <div>
+                      <h3 className="text-md font-semibold text-center mb-3">
+                        Пошаговый процесс работы
+                      </h3>
+                      <ul className="list-disc pl-5 space-y-1">
+                        {complex.steps.map((value, index) => (
+                          <li key={index} className="text-sm text-gray-700 dark:text-gray-300">
+                            {value}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </HoverCardContent>
                 </HoverCard>
@@ -137,9 +137,9 @@ export default function ServiceDetailTable({ service }: Props) {
           {carType.map((carCategory, idx) => (
             <TableRow
               key={idx}
-              className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
+              className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-200"
             >
-              <TableCell className="py-5 px-6 text-left text-base text-gray-800 dark:text-gray-200 whitespace-nowrap md:whitespace-normal ">
+              <TableCell className="py-5 px-6 text-left text-sm text-gray-800 dark:text-gray-200 whitespace-nowrap">
                 {carCategory}
               </TableCell>
               {service.content.map((complex, index) => {
@@ -149,7 +149,7 @@ export default function ServiceDetailTable({ service }: Props) {
                 return (
                   <TableCell
                     key={index}
-                    className="text-base font-medium text-center"
+                    className="text-sm font-medium text-center text-gray-900 dark:text-white"
                   >
                     {price ? `${price} ₽` : "-"}
                   </TableCell>
@@ -159,7 +159,7 @@ export default function ServiceDetailTable({ service }: Props) {
           ))}
         </TableBody>
       </Table>
-      <div className="border-1 mt-20 border-orange" />
     </div>
   );
 }
+

@@ -11,13 +11,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CarsController = void 0;
 const common_1 = require("@nestjs/common");
-const prisma_service_1 = require("../prisma.service");
+const prisma_service_1 = require("../prisma/prisma.service");
 let CarsController = class CarsController {
     prisma;
     constructor(prisma) {
         this.prisma = prisma;
     }
-    findAllBrand() {
+    findAllCars() {
+        return this.prisma.car.findMany({
+            include: {
+                brand: true,
+            },
+        });
+    }
+    findAllBrands() {
         return this.prisma.brand.findMany();
     }
 };
@@ -27,7 +34,13 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
-], CarsController.prototype, "findAllBrand", null);
+], CarsController.prototype, "findAllCars", null);
+__decorate([
+    (0, common_1.Get)('brands'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], CarsController.prototype, "findAllBrands", null);
 exports.CarsController = CarsController = __decorate([
     (0, common_1.Controller)('cars'),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService])

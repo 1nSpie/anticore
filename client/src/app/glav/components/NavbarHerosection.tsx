@@ -7,9 +7,21 @@ import { Button } from "@/shadcn/button";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { navigationLinks } from "@/lib/contants";
 import { usePathname } from "next/navigation";
+import shapka1 from "public/shapka1.svg";
+
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_BACKEND_API_URL || "http://localhost:3001/api";
 
 export default function NavbarHeroSection() {
   const pathname = usePathname();
+
+  const handleScroll = (e: React.MouseEvent, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   // Скрываем navbar на главной
   if (pathname === "/glav")
@@ -24,7 +36,10 @@ export default function NavbarHeroSection() {
           className="absolute inset-0 object-cover w-full h-full z-[-1]"
           preload="auto"
         >
-          <source src="http://localhost:4444/api/video/videoStart.mp4" type="video/mp4" />
+          <source
+            src={`${API_BASE_URL}/video/videoStart.mp4`}
+            type="video/mp4"
+          />
           Ваш браузер не поддерживает видео.
         </video>
 
@@ -38,34 +53,27 @@ export default function NavbarHeroSection() {
             {/* Логотип */}
             <div className="flex items-center wrap">
               <div className="flex items-center min-w-fit mr-8">
-                <Image
-                  src={"/trans_bg.png"}
-                  alt="Логотип"
-                  width={100}
-                  height={100}
-                />
-                <div>
-                  <span className="text-5xl font-bold text-white font-mono">
-                    <span className="text-orange-500">Аван</span>Кор
-                  </span>
-                </div>
+                <Image src={shapka1} alt="Логотип" width={300} height={300} />
               </div>
-              <div className="hidden md:flex flex-col no-wrap">
+              <div
+                className="hidden md:flex flex-col no-wrap"
+                onClick={(e) => handleScroll(e, "map")}
+              >
                 <div
                   className="flex cursor-pointer mb-1"
                   onClick={() => console.log("Zhuk")}
                 >
-                  <FaMapMarkerAlt className="mr-1 text-orange-500" />
+                  <FaMapMarkerAlt className="mr-1 text-orangeDefault" />
                   <span className="text-white">Жуковский</span>
                 </div>
                 <div
                   className="flex cursor-pointer"
                   onClick={() => console.log("Kolomna")}
                 >
-                  <FaMapMarkerAlt className="mr-1 text-orange-500" />
+                  <FaMapMarkerAlt className="mr-1 text-orangeDefault" />
                   <span className="text-white">Коломна</span>
                 </div>
-                <span className="text-sm text-white dark:text-gray-300 border-t-2 border-dashed border-orange-500 mt-2 pt-2">
+                <span className="text-sm text-white dark:text-gray-300 border-t-2 border-dashed border-orangeDefault mt-2 pt-2">
                   Ежедневно c 09:00 до 20:00
                 </span>
               </div>
@@ -86,13 +94,13 @@ export default function NavbarHeroSection() {
           </nav>
 
           <div className="group flex items-center cursor-pointer justify-end mr-37">
-            <div className="rounded-full border-2 border-orange-500 group-hover:border-orange-600 p-2 transition-colors duration-300">
+            <div className="rounded-full border-2 border-orangeDefault group-hover:border-orange-600 p-2 transition-colors duration-300">
               <PhoneIcon className="w-10 h-10 text-white" />
             </div>
             <div className="ml-2 text-right">
-              <p className="text-xl text-white">+7 998 245 68 82</p>
+              <span className="text-xl text-white">+7 998 245 68 82</span>
               <p
-                className="text-xl text-orange-500 hover:text-orange-600 border-b-2 border-dotted border-orange-500 
+                className="text-xl text-orangeDefault hover:text-orange-600 border-b-2 border-dotted border-orangeDefault 
               group-hover:text-orange-600 group-hover:border-orange-600 transition-all duration-300"
               >
                 Заказать звонок
@@ -107,8 +115,11 @@ export default function NavbarHeroSection() {
                 Защита авто от коррозии — <br />
                 <span className="text-orangeDefault">наша работа</span>
               </h1>
-              <Button className="h-fit hover:bg-orange-600 mt-4 shadow-xl/30 shadow-orange-500/30 bg-orange-500 w-full">
-                <p className="text-3xl text-white dark:text-gray-300 p-2">
+              <Button
+                className="h-fit hover:bg-orange-600 mt-4 shadow-xl/30 shadow-orangeDefault/30 bg-orangeDefault w-full"
+                onClick={(e) => handleScroll(e, "auto-price")}
+              >
+                <p className="text-3xl text-white dark:text-gray-300 pt-2">
                   Остановить коррозию
                 </p>
               </Button>

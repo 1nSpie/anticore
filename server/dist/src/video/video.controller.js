@@ -19,7 +19,25 @@ const fs_2 = require("fs");
 const path_1 = require("path");
 let VideoController = class VideoController {
     streamVideo(req, res) {
-        const filePath = (0, path_1.join)(process.cwd(), 'public', 'video', req.params.filename);
+        const filename = req.params.filename;
+        const getContentType = (filename) => {
+            const ext = filename.toLowerCase().split('.').pop();
+            switch (ext) {
+                case 'mp4':
+                    return 'video/mp4';
+                case 'webm':
+                    return 'video/webm';
+                case 'ogg':
+                    return 'video/ogg';
+                default:
+                    return null;
+            }
+        };
+        const contentType = getContentType(filename);
+        if (!contentType) {
+            return res.status(common_1.HttpStatus.BAD_REQUEST).send('Unsupported video format');
+        }
+        const filePath = (0, path_1.join)(process.cwd(), 'public', 'video', filename);
         let videoStats;
         try {
             videoStats = (0, fs_2.statSync)(filePath);
@@ -31,7 +49,7 @@ let VideoController = class VideoController {
         const range = req.headers.range;
         if (!range) {
             res.header({
-                'Content-Type': 'video/mp4',
+                'Content-Type': contentType,
                 'Content-Length': fileSize,
             });
             (0, fs_1.createReadStream)(filePath).pipe(res);
@@ -48,7 +66,7 @@ let VideoController = class VideoController {
         }
         const chunkSize = end - start + 1;
         res.header({
-            'Content-Type': 'video/mp4',
+            'Content-Type': contentType,
             'Content-Range': `bytes ${start}-${end}/${fileSize}`,
             'Accept-Ranges': 'bytes',
             'Content-Length': chunkSize,

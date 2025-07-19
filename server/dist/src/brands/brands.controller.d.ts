@@ -1,17 +1,19 @@
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from '../prisma/prisma.service';
 export declare class BrandsController {
     private readonly prisma;
     constructor(prisma: PrismaService);
-    findAllCarWithBrand(id: string): import(".prisma/client").Prisma.PrismaPromise<({
-        CarClass: {
+    findAllCarWithBrand(id: string): Promise<{
+        prices: {
             id: number;
-            basePrice: number;
-            complexPrice: number;
+            segment: number;
+            standartML: number | null;
+            standartMLBody: number | null;
+            complexML: number | null;
+            complexMLBody: number | null;
         } | null;
-    } & {
         id: number;
         model: string;
         brandId: number | null;
-        classId: number | null;
-    })[]>;
+        segment: number;
+    }[]>;
 }

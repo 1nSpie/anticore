@@ -1,20 +1,20 @@
 "use client";
 
-import carousel1 from "../../../../public/carousel1-Photoroom.png";
-import carousel2 from "../../../../public/carousel2.png";
-import carousel3 from "../../../../public/carousel3.png";
-import carousel4 from "../../../../public/carousel4.png";
-import carousel5 from "../../../../public/carousel5.png";
-import carousel6 from "../../../../public/carousel6.png";
-import carousel7 from "../../../../public/carousel7.png";
-import carousel8 from "../../../../public/carousel8.png";
-import carousel9 from "../../../../public/carousel9.png";
-import carousel10 from "../../../../public/carousel10.png";
-import carousel11 from "../../../../public/carousel11.png";
-import about1 from "../../../../public/about1.svg";
-import about2 from "../../../../public/about2.svg";
-import about3 from "../../../../public/about3.svg";
-import about4 from "../../../../public/about4.svg";
+import carousel1 from "public/carousel/carousel1-Photoroom.png";
+import carousel2 from "public/carousel/carousel2.png";
+import carousel3 from "public/carousel/carousel3.png";
+import carousel4 from "public/carousel/carousel4.png";
+import carousel5 from "public/carousel/carousel5.png";
+import carousel6 from "public/carousel/carousel6.png";
+import carousel7 from "public/carousel/carousel7.png";
+import carousel8 from "public/carousel/carousel8.png";
+import carousel9 from "public/carousel/carousel9.png";
+import carousel10 from "public/carousel/carousel10.png";
+import carousel11 from "public/carousel/carousel11.png";
+import about1 from "public/carousel/about1.svg";
+import about2 from "public/carousel/about2.svg";
+import about3 from "public/carousel/about3.svg";
+import about4 from "public/carousel/about4.svg";
 import {
   Carousel,
   CarouselContent,
@@ -119,7 +119,7 @@ const icons = [
   },
   {
     id: 3,
-    description: "Сертефицированные материалы",
+    description: "Сертифицированные материалы",
     icon: about3,
   },
   {
@@ -129,12 +129,23 @@ const icons = [
   },
 ];
 
-export default function CarouselSection() {
-  const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
+type Props = {
+  id: string;
+};
+
+export default function CarouselSection({ id }: Props) {
+  const plugin = useRef(
+    Autoplay({
+      delay: 2000,
+      stopOnInteraction: true,
+      stopOnMouseEnter: true,
+      playOnInit: true,
+    })
+  );
 
   return (
-    <div className="bg-background1 dark:bg-backgroundDark">
-      <div className="max-w-[85rem] mx-auto h-auto px-8 py-10 sm:px-6 lg:px-20 lg:py-14">
+    <section id={id} className="bg-background1 dark:bg-backgroundDark">
+      <div className="max-w-[85rem] mx-auto h-auto px-8 py-16 sm:px-6 lg:px-20 lg:py-20">
         {/* Заголовок */}
         <div className="rounded-xl text-black dark:text-white block max-w-[85rem] mx-auto text-center pb-10">
           <h2 className="text-2xl font-bold text-black dark:text-white mb-4">
@@ -155,7 +166,8 @@ export default function CarouselSection() {
               loop: true,
             }}
             onMouseEnter={plugin.current.stop}
-            onMouseLeave={()=> plugin.current.play(true)}
+            onMouseLeave={() => plugin.current.play}
+            className="relative"
           >
             <CarouselContent className="pl-0">
               {slides.map((slide, key) => (
@@ -163,9 +175,8 @@ export default function CarouselSection() {
                   key={key}
                   className="md:basis-1/2 lg:basis-1/3 w-full shrink-0"
                 >
-                  <div className="h-full border-orange border-2 p-2 dark:bg-backgroundDark1 rounded-2xl">
+                  <div className="h-full border-orangeDefault border-2 p-2 dark:bg-backgroundDark1 rounded-2xl hover:shadow-lg transition-shadow duration-300">
                     <div className="flex flex-col items-center h-full text-center">
-                      {/* Изображение */}
                       <Image
                         src={slide.img}
                         alt={slide.title}
@@ -173,12 +184,11 @@ export default function CarouselSection() {
                         height={150}
                         className="w-35 h-35 object-cover mb-4 fill-white"
                       />
-                      {/* Текст */}
                       <div className="flex flex-col text-center h-fit">
-                        <span className="text-xl font-bold text-black transition duration-700 dark:text-white">
+                        <span className="text-xl font-bold text-black transition-colors duration-300 dark:text-white">
                           {slide.title}
                         </span>
-                        <span className="text-sm text-black transition duration-700 dark:text-white">
+                        <span className="text-sm text-black transition-colors duration-300 dark:text-white leading-relaxed">
                           {slide.content}
                         </span>
                       </div>
@@ -187,12 +197,9 @@ export default function CarouselSection() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            {/* Стрелки скрываются на мобильных и планшетах */}
             <CarouselPrevious className="hidden lg:flex" />
             <CarouselNext className="hidden lg:flex" />
           </Carousel>
-
-          {/* Блок с информацией */}
           <div className="w-full">
             <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
               {icons.map((el) => (
@@ -205,20 +212,17 @@ export default function CarouselSection() {
                     itemType="svg"
                     src={el.icon}
                     alt={el.description}
-                    width={80}
-                    height={80}
-                    className="w-20 h-20 object-cover mb-2"
+                    width={250}
+                    height={250}
+                    className="object-cover mb-2"
                   />
                   {/* Текст */}
-                  <p className="text-xs sm:text-sm font-medium text-black dark:text-white">
-                    {el.description}
-                  </p>
                 </div>
               ))}
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

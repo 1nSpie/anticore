@@ -1,26 +1,24 @@
 // model Brand {
 //   id   Int    @id @default(autoincrement())
-//   name String
-//   cars Car[]
+//   name String @unique
+//   Car  Car[]
 // }
 
 // model Car {
-//   id       Int       @id @default(autoincrement())
-//   model    String
-//   brandId  Int?
-//   Brand    Brand?    @relation(fields: [brandId], references: [id])
-//   classId  Int?
-//   CarClass CarClass? @relation(fields: [classId], references: [class])
+//   id      Int    @id @default(autoincrement())
+//   model   String
+//   brandId Int?
+//   segment Int
+//   brand   Brand? @relation(fields: [brandId], references: [id])
 // }
 
-// model CarClass {
-//   id              Int   @id @default(autoincrement())
-//   class           Int   @unique
-//   complexPrice    Int
-//   diamondPrice    Int
-//   insulationPrice Int
-//   antigravPrice   Int
-//   Car             Car[]
+// model BodyTypePrice {
+//   id             Int  @id @default(autoincrement())
+//   segment        Int  @unique // Ценовой сегмент (1-6)
+//   standartML     Int?
+//   standartMLBody Int?
+//   complexML      Int?
+//   complexMLBody  Int?
 // }
 
 export type Brand = {
@@ -32,13 +30,49 @@ export type Car = {
   id: number;
   model: string;
   brandId: number;
-  classId: number;
-  CarClass: CarClass
+  segment: number;
+  prices: Prices;
 };
 
-export type CarClass = {
+export type Prices = {
   id: number;
-  class: string;
-  basePrice: number;
-  complexPrice: number;
+  segment: number;
+  standartML: number;
+  standartMLBody: number;
+  complexML: number;
+  complexMLBody: number;
+};
+
+export type ServiceItem = {
+  label: string;
+  price: number;
+  icon: string;
+};
+
+export type ServiceDescription = {
+  title: string;
+  description: string;
+  includes: string[];
+  duration: string;
+  warranty: string;
+};
+
+export type ServiceDescriptions = {
+  [key: string]: ServiceDescription;
+};
+
+export type ContactMethod = 'telegram' | 'whatsapp' | 'phone';
+
+export type AutoPriceFormData = {
+  brand: string;
+  model: string;
+  customBrand: string;
+  isNotAuto: boolean;
+  name: string;
+  phone: string;
+  contactMethod: ContactMethod;
+};
+
+export type AutoPriceProps = {
+  id: string;
 };
