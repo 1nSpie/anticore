@@ -11,8 +11,8 @@ async function bootstrap() {
     app.enableCors({
         credentials: true,
     });
-    app.useStaticAssets((0, path_1.join)(__dirname, '..'), {
-        prefix: '/public/',
+    app.useStaticAssets((0, path_1.join)(__dirname, '..', 'public'), {
+        prefix: '/static/',
     });
     app.setGlobalPrefix('api');
     app.useGlobalPipes(new common_1.ValidationPipe());

@@ -34,6 +34,7 @@ import {
 import { Button } from "@/shadcn/button";
 import { MessageCircle, Phone, Send, Info } from "lucide-react";
 import Link from "next/link";
+import { telegramApiClient } from "@/components/telegram/api";
 
 export default function AutoPrice({ id }: AutoPriceProps) {
   const { register, handleSubmit, watch, control, setValue } =
@@ -104,9 +105,14 @@ export default function AutoPrice({ id }: AutoPriceProps) {
     } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watch("model")]);
 
+  useEffect(() => {
+    setValue("brand", "");
+    setValue("model", "");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [watch("isNotAuto")]);
+
   const onSubmit = (data: AutoPriceFormData) => {
-    console.log("Форма отправлена", data);
-    // Здесь можно отправить данные на сервер
+    telegramApiClient.sendFullForm(data);
   };
 
   const serviceDescriptions: ServiceDescriptions = {
@@ -119,10 +125,11 @@ export default function AutoPrice({ id }: AutoPriceProps) {
         "Промывка и сушка",
         "Упаковка и обработка пластиком",
         "Обработка антикоррозийным составом",
+        "Мойка",
         "Финальная сборка",
       ],
-      duration: "6 часов",
-      warranty: "6 месяцев",
+      duration: "8 часов",
+      warranty: "3 года",
     },
     "Стандарт ML+BODY": {
       title: "Стандарт ML+BODY",
@@ -133,10 +140,11 @@ export default function AutoPrice({ id }: AutoPriceProps) {
         "Зачистка и обработка мест коррозии",
         "Обработка составами с ингибитором",
         "Покрытие навесного оборудования восками",
+        "Мойка",
         "Финальная сборка",
       ],
-      duration: "7 часов",
-      warranty: "8 месяцев",
+      duration: "8 часов",
+      warranty: "5 лет",
     },
     "Комплекс ML": {
       title: "Комплекс ML",
@@ -147,10 +155,11 @@ export default function AutoPrice({ id }: AutoPriceProps) {
         "Промывка с высоким давлением",
         "Сушка и обработка консервантом",
         "Покрытие навесного оборудования восками",
+        "Мойка",
         "Финальная сборка",
       ],
       duration: "8 часов",
-      warranty: "12 месяцев",
+      warranty: "3 года",
     },
     "Комплекс ML+BODY": {
       title: "Комплекс ML+BODY",
@@ -161,10 +170,11 @@ export default function AutoPrice({ id }: AutoPriceProps) {
         "Сушка и защита консервантом",
         "Обработка BPM составом для виброизоляции",
         "Покрытие воском",
+        "Мойка",
         "Финальная сборка и проверка",
       ],
-      duration: "9 часов",
-      warranty: "18 месяцев",
+      duration: "8 часов",
+      warranty: "3 лет",
     },
   };
 
@@ -474,7 +484,9 @@ export default function AutoPrice({ id }: AutoPriceProps) {
                     </DialogFooter>
                     <p className="text-xs text-center">
                       Нажимая кнопку “Отправить заявку” Соглашаюсь с{" "}
-                      <Link href={'/pk'} className="underline">политикой конфиденциальности</Link>
+                      <Link href={"/pk"} className="underline">
+                        политикой конфиденциальности
+                      </Link>
                     </p>
                   </DialogContent>
                 </Dialog>
@@ -586,8 +598,8 @@ export default function AutoPrice({ id }: AutoPriceProps) {
                   serviceDescriptions[selectedService.label]?.description}
               </DialogDescription>
             </DialogHeader>
-            <div className="py-4 space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <div className="grid grid-cols-1 md:grid-cols-2">
                 <div className="space-y-2">
                   <h4 className="font-medium text-sm text-gray-700 dark:text-gray-300">
                     Длительность
@@ -597,7 +609,7 @@ export default function AutoPrice({ id }: AutoPriceProps) {
                       serviceDescriptions[selectedService.label]?.duration}
                   </p>
                 </div>
-                <div className="space-y-2">
+                <div>
                   <h4 className="font-medium text-sm text-gray-700 dark:text-gray-300">
                     Гарантия
                   </h4>

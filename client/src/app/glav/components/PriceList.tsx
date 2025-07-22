@@ -15,9 +15,10 @@ const products = [
     name: "Легковые автомобили до 4 метров (Класс А,B)",
     carlist:
       "Kia Picanto, Ford Fiesta, Chevrolet Spark, Lada Kalina, Nissan Micra, Peugeot 1007",
-    bottom: "9500 руб",
-    compex: "16 500 руб",
-    compexAndDiamond: "28 500 руб",
+    ML: "21 000 руб",
+    MLBody: "23 000 руб",
+    CML: "26 000 руб",
+    CMLBody: "26 000 руб",
     href: "#",
     imageSrc: car1,
     imageAlt: "car1",
@@ -28,9 +29,10 @@ const products = [
     href: "#",
     carlist:
       "Mazda 3, Ford Modeo, Focus, Mazda 6, Toyota Camry, Corolla, Avensis, KIA Optima, Rio, Hyundai Solaris",
-    bottom: "16 500 руб",
-    compex: "20 500 руб",
-    compexAndDiamond: "32 500 руб",
+    ML: "23 000 руб",
+    MLBody: "27 000 руб",
+    CML: "30 000 руб",
+    CMLBody: "",
     imageSrc: car4,
     imageAlt:
       "Olive drab green insulated bottle with flared screw lid and flat top",
@@ -41,9 +43,10 @@ const products = [
     href: "#",
     carlist:
       "KIA Sportage, Hyundai ix35, Nissan Qashqai, Renault Duster, Ford Kuga, Geely Engrand X7",
-    bottom: "18 500 руб",
-    compex: "22 500 руб",
-    compexAndDiamond: "34 500 руб",
+    ML: "28 000 руб",
+    MLBody: "30 000 руб",
+    CML: "33 000 руб",
+    CMLBody: "",
     imageSrc: car3,
     imageAlt:
       "Person using a pen to cross a task off a productivity paper card",
@@ -54,9 +57,10 @@ const products = [
     href: "#",
     carlist:
       "Toyota Land Cruiser 100, 200, Prado, Highlander, Jeep, Opel Frontera, Cadillac Escalade, Chevrolet Suburban, УАЗ",
-    bottom: "21 500 руб",
-    compex: "25 500 руб",
-    compexAndDiamond: "37 500 руб",
+    ML: "30 000 руб",
+    MLBody: "35 000 руб",
+    CML: "38 000 руб",
+    CMLBody: "",
     imageSrc: car5,
     imageAlt:
       "Hand holding black machined steel mechanical pencil with brass tip and top.",
@@ -67,9 +71,10 @@ const products = [
     href: "#",
     carlist:
       "Mercedes-Benz Sprinter, Ford Transit, Fiat Ducato, Газель, Ford F150, Dodge Ram, Toyota Tundra, Volkswagen Amarok, Chevrolet Silverado",
-    bottom: "9500 руб",
-    compex: "16 500 руб",
-    compexAndDiamond: "28 500 руб",
+    ML: "30 000 руб",
+    MLBody: "35 000 руб",
+    CML: "38 000 руб",
+    CMLBody: "",
     imageSrc: car6,
     imageAlt:
       "Hand holding black machined steel mechanical pencil with brass tip and top.",
@@ -80,9 +85,10 @@ const products = [
     href: "#",
     carlist:
       "Jaguar, BMW, Audi, Merсedes, Rover, Land Rover, Lexus, Volkswagen, Volvo, Mitsubishi (Pagero), Toyota Alphard",
-    bottom: "Договорная",
-    compex: "Договорная",
-    compexAndDiamond: "Договорная",
+    ML: "Договорная",
+    MLBody: "Договорная",
+    CML: "Договорная",
+    CMLBody: "Договорная",
     imageSrc: car2,
     imageAlt:
       "Hand holding black machined steel mechanical pencil with brass tip and top",
@@ -96,9 +102,9 @@ type Props = {
 export default function PriceCardList({ id }: Props) {
   function PriceCard() {
     return products.map((product, index) => (
-      <motion.section 
-        id={id}  
-        key={product.id} 
+      <motion.section
+        id={id}
+        key={product.id}
         className="group"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -121,23 +127,27 @@ export default function PriceCardList({ id }: Props) {
         <div className="mt-4 space-y-2">
           <div className="flex items-center gap-2">
             <span className="font-bold text-gray-800 dark:text-orangeDefault">
-              Днище:
+              Стандарт ML:
             </span>
-            <span className="dark:text-white text-black">{product.bottom}</span>
+            <span className="dark:text-white text-black">{product.ML}</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="font-bold text-gray-800 dark:text-orangeDefault">
-              Compex:
+              Стандарт ML/Body:
             </span>
-            <span className="dark:text-white text-black">{product.compex}</span>
+            <span className="dark:text-white text-black">{product.MLBody}</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="font-bold text-gray-800 dark:text-orangeDefault">
-              Compex + Diamond:
+              Комплекс ML:
             </span>
-            <span className="dark:text-white text-black">
-              {product.compexAndDiamond}
+            <span className="dark:text-white text-black">{product.CML}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="font-bold text-gray-800 dark:text-orangeDefault">
+              Комплекс ML/Body:
             </span>
+            <span className="dark:text-white text-black">{product.CMLBody}</span>
           </div>
         </div>
         <div className="lg:hidden block w-full border-2 mt-4 border-orangeDefault"></div>
@@ -147,7 +157,7 @@ export default function PriceCardList({ id }: Props) {
 
   return (
     <div className="bg-background dark:bg-backgroundDark">
-      <motion.div 
+      <motion.div
         className="mx-auto max-w-[85rem] px-4 py-16 sm:px-6 sm:py-24  lg:px-8"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}

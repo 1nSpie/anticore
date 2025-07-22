@@ -35,7 +35,10 @@ export const useScrollNavigation = (sections: NavigationSection[]) => {
       setScrollProgress(progress);
       
       // Show navigation after scrolling down a bit
-      setIsVisible(scrollY > 300);
+     
+        // setOp
+        setIsVisible(scrollY > 300);
+     
 
       // Find the current active section
       let currentSection = '';

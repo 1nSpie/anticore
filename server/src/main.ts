@@ -13,8 +13,9 @@ async function bootstrap() {
     credentials: true,
   });
 
-  app.useStaticAssets(join(__dirname, '..'), {
-    prefix: '/public/',
+  // Serve static files from public directory
+  app.useStaticAssets(join(__dirname, '..', 'public'), {
+    prefix: '/static/',
   });
 
   app.setGlobalPrefix('api');

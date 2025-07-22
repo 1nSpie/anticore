@@ -1,7 +1,6 @@
 // components/YandexMapWidget.tsx
 
 import Link from 'next/link';
-import { StarIcon } from '@heroicons/react/24/solid';
 
 export const YandexMapWidget = () => {
   return (
@@ -9,16 +8,6 @@ export const YandexMapWidget = () => {
       <div className="w-full max-w-4xl">
         <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-gray-200/50 dark:border-gray-700/50 hover:shadow-3xl transition-all duration-500">
           {/* Reviews Header */}
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="flex items-center gap-1">
-              {[...Array(5)].map((_, i) => (
-                <StarIcon key={i} className="w-5 h-5 text-yellow-400" />
-              ))}
-            </div>
-            <span className="text-lg font-semibold text-gray-900 dark:text-white">
-              4.9 • 126 отзывов
-            </span>
-          </div>
           
           {/* Widget Container */}
           <div className="relative">
@@ -66,7 +55,7 @@ export const YandexMapWidget = () => {
               Присоединяйтесь к сотням довольных клиентов АванКор
             </p>
             <div className="flex flex-wrap justify-center gap-3">
-              <a
+              <Link
                 href="tel:+79161456882"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl transition-colors duration-200 shadow-lg hover:shadow-xl"
               >
@@ -74,7 +63,7 @@ export const YandexMapWidget = () => {
                   <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                 </svg>
 Позвонить
-              </a>
+              </Link>
               <Link
                 href="#auto-price"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-gray-700 text-orange-600 dark:text-orange-400 font-semibold rounded-xl border-2 border-orange-500 hover:bg-orange-50 dark:hover:bg-gray-600 transition-colors duration-200 shadow-lg hover:shadow-xl"

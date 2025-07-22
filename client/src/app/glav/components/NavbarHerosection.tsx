@@ -8,11 +8,17 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { navigationLinks } from "@/lib/contants";
 import { usePathname } from "next/navigation";
 import shapka1 from "public/shapka1.svg";
+import telegramIcon from "public/icons8-телеграм.svg";
+import whatsappIcon from "public/icons8-whatsapp.svg";
+import vkIcon from "public/icons8-vk.svg";
+import rutubeIcon from "public/Rutube_icon.svg";
+import { CallbackModal } from "@/app/ui/ui/CallbackModal";
+import Link from "next/link";
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_BACKEND_API_URL || "http://localhost:3001/api";
 
-export default function NavbarHeroSection() {
+export default function NavbarHeroSection({ id }: { id: string }) {
   const pathname = usePathname();
 
   const handleScroll = (e: React.MouseEvent, id: string) => {
@@ -26,7 +32,7 @@ export default function NavbarHeroSection() {
   // Скрываем navbar на главной
   if (pathname === "/glav")
     return (
-      <div className="relative h-screen overflow-hidden hidden xl:block">
+      <div className="relative min-h-screen overflow-hidden hidden xl:block" id={id}>
         {/* Видео на заднем фоне */}
         <video
           autoPlay
@@ -44,7 +50,7 @@ export default function NavbarHeroSection() {
         </video>
 
         {/* Тёмный overlay для улучшения читаемости текста */}
-        <div className="absolute inset-0 bg-black/50 backdrop-blur-sm z-0"></div>
+        <div className="absolute inset-0 bg-black/80 backdrop-blur-xs z-0"></div>
 
         {/* Основной контент */}
         <div className="relative z-10">
@@ -92,21 +98,24 @@ export default function NavbarHeroSection() {
               ))}
             </div>
           </nav>
-
-          <div className="group flex items-center cursor-pointer justify-end mr-37">
-            <div className="rounded-full border-2 border-orangeDefault group-hover:border-orange-600 p-2 transition-colors duration-300">
-              <PhoneIcon className="w-10 h-10 text-white" />
-            </div>
-            <div className="ml-2 text-right">
-              <span className="text-xl text-white">+7 998 245 68 82</span>
-              <p
-                className="text-xl text-orangeDefault hover:text-orange-600 border-b-2 border-dotted border-orangeDefault 
-              group-hover:text-orange-600 group-hover:border-orange-600 transition-all duration-300"
-              >
-                Заказать звонок
-              </p>
-            </div>
-          </div>
+          <CallbackModal
+            trigger={
+              <div className="group flex items-center cursor-pointer w-fit left-4/5 relative">
+                <div className="rounded-full border-2 border-orangeDefault group-hover:border-orange-600 p-2 transition-colors duration-300">
+                  <PhoneIcon className="w-10 h-10 text-white" />
+                </div>
+                <div className="ml-2 text-right">
+                  <span className="text-xl text-white">+7 993 245 68 82</span>
+                  <p
+                    className="text-xl text-orangeDefault hover:text-orange-600 border-b-2 border-dotted border-orangeDefault 
+                group-hover:text-orange-600 group-hover:border-orange-600 transition-all duration-300"
+                  >
+                    Заказать звонок
+                  </p>
+                </div>
+              </div>
+            }
+          ></CallbackModal>
 
           {/* Hero Section */}
           <div className="flex items-center h-full mt-10 justify-end mr-37">
@@ -116,16 +125,91 @@ export default function NavbarHeroSection() {
                 <span className="text-orangeDefault">наша работа</span>
               </h1>
               <Button
-                className="h-fit hover:bg-orange-600 mt-4 shadow-xl/30 shadow-orangeDefault/30 bg-orangeDefault w-full"
+                className="h-16 w-100 inline-flex items-center justify-center px-8 py-4 bg-orangeDefault hover:bg-orange-600 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
                 onClick={(e) => handleScroll(e, "auto-price")}
               >
-                <p className="text-3xl text-white dark:text-gray-300 pt-2">
-                  Остановить коррозию
-                </p>
+                <p className="text-3xl mt-4">Остановить коррозию</p>
               </Button>
             </div>
           </div>
         </div>
+          <div className="absolute bottom-0 right-0 flex space-x-4 px-24 py-8">
+            <Link
+              href="https://api.whatsapp.com/send/?phone=79932456882&text=Добрый+день!+Хочу+записаться+на+обработку&type=phone_number&app_absent=0"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex"
+            >
+              <div
+                className="w-10 h-10 bg-orangeDefault hover:bg-orangeDefaultHover rounded-full flex items-center justify-center shadow-md transition-transform duration-500 hover:scale-110"
+                title="WhatsApp"
+              >
+                <Image
+                  src={whatsappIcon}
+                  alt="Contact via WhatsApp"
+                  width={20}
+                  height={20}
+                />
+              </div>
+            </Link>
+
+            <Link
+              href=" https://t.me/+79932456882 "
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex"
+            >
+              <div
+                className="w-10 h-10 bg-orangeDefault hover:bg-orangeDefaultHover rounded-full flex items-center justify-center shadow-md transition-transform duration-500 hover:scale-110"
+                title="Telegram"
+              >
+                <Image
+                  src={telegramIcon}
+                  alt="Contact via Telegram"
+                  width={20}
+                  height={20}
+                />
+              </div>
+            </Link>
+
+            <Link
+              href="https://vk.com/technosyndicate "
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex"
+            >
+              <div
+                className="w-10 h-10 bg-orangeDefault hover:bg-orangeDefaultHover rounded-full flex items-center justify-center shadow-md transition-transform duration-500 hover:scale-110"
+                title="VK"
+              >
+                <Image
+                  src={vkIcon}
+                  alt="Contact via VK"
+                  width={20}
+                  height={20}
+                />
+              </div>
+            </Link>
+
+            <Link
+              href="https://rutube.ru/channel/59698286/ "
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex"
+            >
+              <div
+                className="w-10 h-10 bg-orangeDefault hover:bg-orangeDefaultHover rounded-full flex items-center justify-center shadow-md transition-transform duration-500 hover:scale-110"
+                title="RUTUBE"
+              >
+                <Image
+                  src={rutubeIcon}
+                  alt="Contact via Rutube"
+                  width={20}
+                  height={20}
+                />
+              </div>
+            </Link>
+          </div>
       </div>
     );
 }

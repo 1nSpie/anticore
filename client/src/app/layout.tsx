@@ -3,13 +3,14 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "../lib/ThemeProvider";
 import { FeedbackModalProvider } from "../lib/FeedbackModalProvider";
-import Footer from "./ui/Footer";
-import ClientOnly from "./ui/ClientOnly";
-import Navigation from "./ui/Navigation";
+import Footer from "../components/Footer";
+import ClientOnly from "./ui/ui/ClientOnly";
+import Navigation from "../components/Navigation";
+import { Toaster } from "@/shadcn/sonner";
 
 export const metadata: Metadata = {
-  title: "PowerCor",
-  description: "The best anticorrosion site!",
+  title: "AvanCore",
+  description: "Защити свой автомобиль от коррозииyes",
 };
 
 const geistSans = Geist({
@@ -30,6 +31,9 @@ export default function RootLayout({
   
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/favicon.svg" sizes="any" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
@@ -45,6 +49,7 @@ export default function RootLayout({
             <ClientOnly />
             <Footer />
           </FeedbackModalProvider>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

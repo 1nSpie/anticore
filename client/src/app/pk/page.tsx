@@ -1,6 +1,10 @@
+"use client";
 import Link from "next/link";
+import FeedbackLine from "../ui/ui/FeedbackLine";
 
 export default function PrivacyPolicyPage() {
+  const SITE_LINK = process.env.SITE_LINK || "http://localhost:3000";
+  console.log("✌️SITE_LINK --->", SITE_LINK);
   return (
     <>
       <div className="min-h-screen bg-background dark:bg-backgroundDark py-12 px-6">
@@ -31,11 +35,8 @@ export default function PrivacyPolicyPage() {
               Настоящая политика Оператора в отношении обработки персональных
               данных (далее — Политика) применяется ко всей информации, которую
               Оператор может получить о посетителях веб-сайта{" "}
-              <a
-                href="https://powercor.ru/ "
-                className="text-orange hover:underline"
-              >
-                https://powercor.ru/{" "}
+              <a href={SITE_LINK} className="text-orange hover:underline">
+                {SITE_LINK}{" "}
               </a>
               .
             </p>
@@ -65,11 +66,8 @@ export default function PrivacyPolicyPage() {
                 информационных материалов, а также программ для ЭВМ и баз
                 данных, обеспечивающих их доступность в сети интернет по
                 сетевому адресу{" "}
-                <a
-                  href="https://powercor.ru/ "
-                  className="text-orange hover:underline"
-                >
-                  https://powercor.ru/{" "}
+                <a href={SITE_LINK} className="text-orange hover:underline">
+                  {SITE_LINK}{" "}
                 </a>
                 .
               </li>
@@ -108,21 +106,15 @@ export default function PrivacyPolicyPage() {
                 <strong>Персональные данные</strong> — любая информация,
                 относящаяся прямо или косвенно к определенному или определяемому
                 Пользователю веб-сайта{" "}
-                <a
-                  href="https://powercor.ru/ "
-                  className="text-orange hover:underline"
-                >
-                  https://powercor.ru/{" "}
+                <a href={SITE_LINK} className="text-orange hover:underline">
+                  {SITE_LINK}{" "}
                 </a>
                 .
               </li>
               <li>
                 <strong>Пользователь</strong> — любой посетитель веб-сайта{" "}
-                <a
-                  href="https://powercor.ru/ "
-                  className="text-orange hover:underline"
-                >
-                  https://powercor.ru/{" "}
+                <a href={SITE_LINK} className="text-orange hover:underline">
+                  {SITE_LINK}{" "}
                 </a>
                 .
               </li>
@@ -486,11 +478,8 @@ export default function PrivacyPolicyPage() {
                 aleksandrzagornyj367@gmail.com
               </a>
               . Актуальная версия Политики доступна по адресу{" "}
-              <a
-                href="https://powercor.ru/pk "
-                className="text-orange hover:underline"
-              >
-                https://powercor.ru/pk{" "}
+              <a href="/pk" className="text-orange hover:underline">
+                {SITE_LINK}/pk
               </a>
               .
             </p>
@@ -499,13 +488,14 @@ export default function PrivacyPolicyPage() {
           <div className="text-center mt-8">
             <Link
               href="/glav"
-              className="inline-block px-6 py-2 bg-orange text-white rounded-md hover:bg-orangeDefaultHover dark:hover:bg-orangeDefault transition"
+              className="inline-flex items-center justify-center px-8 py-4 bg-orangeDefault text-white font-semibold rounded-2xl border-2 hover:bg-orangeDefaultHover transition-all duration-200"
             >
               Вернуться на главную
             </Link>
           </div>
         </div>
       </div>
+      <FeedbackLine />
     </>
   );
 }

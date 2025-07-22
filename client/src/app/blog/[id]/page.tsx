@@ -4,13 +4,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import blogApiClient, { BlogPost } from "../blogApi";
-import {
-  ChevronLeft,
-  Clock,
-  Calendar,
-  User,
-} from "lucide-react";
-import { BlogThumbnail, BlogHeroImage } from "../components/BlogImage";
+import { ChevronLeft, Clock, Calendar, User } from "lucide-react";
+import FeedbackLine from "@/app/ui/ui/FeedbackLine";
+import ServerImage from "@/app/ui/ui/ServerImage";
 
 // Анимация для всей страницы
 const pageVariants = {
@@ -175,8 +171,8 @@ export default function BlogPostPage() {
           className="mb-8"
         >
           <div className="relative rounded-lg overflow-hidden flex justify-center">
-            <BlogHeroImage
-              filename={post.image}
+            <ServerImage
+              filePath={post.image ?? ""}
               alt={post.title}
               className="object-cover rounded-lg"
             />
@@ -193,34 +189,7 @@ export default function BlogPostPage() {
         />
 
         {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-8 text-center mb-12"
-        >
-          <h3 className="text-2xl font-bold text-black dark:text-white mb-4">
-            Нужна антикоррозийная защита?
-          </h3>
-          <p className="text-gray-600 dark:text-gray-300 mb-6">
-            Обратитесь к нашим экспертам для профессиональной консультации и
-            качественной обработки вашего автомобиля.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/glav#auto-price"
-              className="bg-orangeDefault hover:bg-orange-600 text-white px-8 py-3 rounded-lg transition-colors font-semibold"
-            >
-              Рассчитать стоимость
-            </Link>
-            <Link
-              href="/glav#map"
-              className="bg-greenDefault hover:bg-greenDefaultHover text-white px-8 py-3 rounded-lg transition-colors font-semibold"
-            >
-              Связаться с нами
-            </Link>
-          </div>
-        </motion.div>
+        <FeedbackLine />
 
         {/* Related Articles */}
         {relatedPosts.length > 0 && (
@@ -241,8 +210,8 @@ export default function BlogPostPage() {
                   className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group"
                 >
                   <div className="relative overflow-hidden">
-                    <BlogThumbnail
-                      filename={relatedPost.image}
+                    <ServerImage
+                      filePath={relatedPost.image ?? ""}
                       alt={relatedPost.title}
                       className="object-cover"
                     />

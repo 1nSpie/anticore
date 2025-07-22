@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { blogApiClient, BlogPost, BlogCategory } from "./blogApi";
-import { BlogThumbnail, BlogHeroImage } from "./components/BlogImage";
+import FeedbackLine from "../ui/ui/FeedbackLine";
+import ServerImage from "../ui/ui/ServerImage";
 
 export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -144,10 +145,12 @@ export default function BlogPage() {
             <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg">
               <div className="grid md:grid-cols-2 gap-0">
                 <div className="h-auto">
-                  <BlogHeroImage
-                    filename={featuredPost.image}
+                  <ServerImage
+                    filePath={featuredPost.image ?? ""}
                     alt={featuredPost.title}
-                    className="object-cover"
+                    width={400}
+                    height={300}
+                    className="rounded-lg shadow-md"
                   />
                 </div>
                 <div className="p-8">
@@ -220,8 +223,8 @@ export default function BlogPage() {
                 >
                   {/* Image */}
                   <div className="relative h-48 overflow-hidden">
-                    <BlogThumbnail
-                      filename={post.image}
+                    <ServerImage
+                      filePath={post.image ?? ""}
                       alt={post.title}
                       className="object-cover"
                     />
@@ -267,6 +270,7 @@ export default function BlogPage() {
           </div>
         )}
       </section>
+      <FeedbackLine />
     </div>
   );
 }

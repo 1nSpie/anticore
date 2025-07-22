@@ -6,7 +6,7 @@ export const services: ServicePackage[] = [
     title: "Комплексная обработка",
     content: [
       {
-        name: "МЛ консервант",
+        name: "Стандарт ML",
         steps: [
           "Разборка",
           "Мойка",
@@ -23,7 +23,7 @@ export const services: ServicePackage[] = [
         ],
       },
       {
-        name: "Стандарт",
+        name: " Стандарт ML/Body",
         steps: [
           "Разборка",
           "Мойка",
@@ -42,7 +42,7 @@ export const services: ServicePackage[] = [
         ],
       },
       {
-        name: "Антишум",
+        name: "Комплекс ML",
         steps: [
           "Разборка пластиковых навесных элементов авто, а так же разборка салона",
           "Мойка",
@@ -61,7 +61,7 @@ export const services: ServicePackage[] = [
         ],
       },
       {
-        name: "Комплекс +",
+        name: "Комплекс ML/Body",
         steps: [
           "Разборка пластиковых навесных элементов авто, а так же разборка салона",
           "Мойка",
@@ -74,10 +74,10 @@ export const services: ServicePackage[] = [
           "Сборка",
         ],
         prices: [
-          { carType: "До 4-х метров", price: "от 26000" },
-          { carType: "От 4-х метров", price: "от 30000" },
-          { carType: "Кроссоверы/универсалы", price: "от 33000" },
-          { carType: "Внедорожники/минивэны", price: "от 38000" },
+          { carType: "До 4-х метров", price: 26000 },
+          { carType: "От 4-х метров", price: 30000 },
+          { carType: "Кроссоверы/универсалы", price: 33000 },
+          { carType: "Внедорожники/минивэны", price: 38000 },
         ],
       },
     ],
@@ -85,5 +85,8 @@ export const services: ServicePackage[] = [
 ];
 
 export const carType = [
-"До 4-х метров", "От 4-х метров","Кроссоверы/универсалы","Внедорожники/минивэны"
-]
+  "До 4-х метров",
+  "От 4-х метров",
+  "Кроссоверы/универсалы",
+  "Внедорожники/минивэны",
+];

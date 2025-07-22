@@ -1,17 +1,17 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 // Типизация параметров
 interface UseFeedbackModalOptions {
-  delay?: number;         // Задержка перед показом модалки (в мс)
-  disabled?: boolean;     // Отключить модалку полностью
+  delay?: number; // Задержка перед показом модалки (в мс)
+  disabled?: boolean; // Отключить модалку полностью
   cooldownHours?: number; // Время "охлаждения" (в часах)
 }
 
 // Константы для хранения ключей
-const FEEDBACK_MODAL_KEY = 'feedbackModalLastShown';
-const SESSION_KEY = 'feedbackModalShownThisSession';
+const FEEDBACK_MODAL_KEY = "feedbackModalLastShown";
+const SESSION_KEY = "feedbackModalShownThisSession";
 
 export const useFeedbackModal = (options: UseFeedbackModalOptions = {}) => {
   const { delay = 3000, disabled = false, cooldownHours = 24 } = options;
@@ -33,18 +33,23 @@ export const useFeedbackModal = (options: UseFeedbackModalOptions = {}) => {
     try {
       const lastShownStr = localStorage.getItem(FEEDBACK_MODAL_KEY);
       if (!lastShownStr) {
-        console.log('FeedbackModal: Never shown before, can show');
+        console.log("FeedbackModal: Never shown before, can show");
         return true;
       }
 
       const lastShown = new Date(lastShownStr);
       const now = new Date();
-      const hoursDiff = (now.getTime() - lastShown.getTime()) / (1000 * 60 * 60);
+      const hoursDiff =
+        (now.getTime() - lastShown.getTime()) / (1000 * 60 * 60);
 
-      console.log(`FeedbackModal: Last shown ${hoursDiff.toFixed(2)} hours ago, cooldown is ${cooldownHours} hours`);
+      console.log(
+        `FeedbackModal: Last shown ${hoursDiff.toFixed(
+          2
+        )} hours ago, cooldown is ${cooldownHours} hours`
+      );
       return hoursDiff >= cooldownHours;
     } catch (error) {
-      console.error('FeedbackModal: Error checking cooldown:', error);
+      console.error("FeedbackModal: Error checking cooldown:", error);
       return true;
     }
   };
@@ -56,9 +61,9 @@ export const useFeedbackModal = (options: UseFeedbackModalOptions = {}) => {
     try {
       const now = new Date().toISOString();
       localStorage.setItem(FEEDBACK_MODAL_KEY, now);
-      console.log('FeedbackModal: Timestamp saved', now);
+      console.log("FeedbackModal: Timestamp saved", now);
     } catch (error) {
-      console.error('FeedbackModal: Error saving timestamp:', error);
+      console.error("FeedbackModal: Error saving timestamp:", error);
     }
   };
 
@@ -66,7 +71,7 @@ export const useFeedbackModal = (options: UseFeedbackModalOptions = {}) => {
   useEffect(() => {
     if (!isClient) return;
     if (disabled) {
-      console.log('FeedbackModal: Disabled');
+      console.log("FeedbackModal: Disabled");
       return;
     }
 
@@ -74,18 +79,18 @@ export const useFeedbackModal = (options: UseFeedbackModalOptions = {}) => {
     setCanShow(canShowModal);
 
     if (!canShowModal) {
-      console.log('FeedbackModal: Cooldown not passed');
+      console.log("FeedbackModal: Cooldown not passed");
       return;
     }
 
     if (hasShown) {
-      console.log('FeedbackModal: Already shown in this session');
+      console.log("FeedbackModal: Already shown in this session");
       return;
     }
 
     const hasSeenThisSession = sessionStorage.getItem(SESSION_KEY);
     if (hasSeenThisSession) {
-      console.log('FeedbackModal: Already shown in this session');
+      console.log("FeedbackModal: Already shown in this session");
       setHasShown(true);
       return;
     }
@@ -94,17 +99,25 @@ export const useFeedbackModal = (options: UseFeedbackModalOptions = {}) => {
     const timer = setTimeout(() => {
       setShowModal(true);
       setHasShown(true);
-      sessionStorage.setItem(SESSION_KEY, 'true');
+      sessionStorage.setItem(SESSION_KEY, "true");
       saveTimestamp();
 
-      console.log('FeedbackModal: Modal shown and timestamp saved');
+      console.log("FeedbackModal: Modal shown and timestamp saved");
     }, delay);
 
     return () => {
-      console.log('FeedbackModal: Clearing timer');
+      console.log("FeedbackModal: Clearing timer");
       clearTimeout(timer);
     };
-  }, [delay, disabled, hasShown, cooldownHours, isClient]);
+  }, [
+    delay,
+    disabled,
+    hasShown,
+    cooldownHours,
+    isClient,
+    checkCooldown,
+    saveTimestamp,
+  ]);
 
   // Закрытие модалки
   const closeModal = () => {
@@ -115,7 +128,7 @@ export const useFeedbackModal = (options: UseFeedbackModalOptions = {}) => {
   const resetModal = () => {
     setHasShown(false);
     sessionStorage.removeItem(SESSION_KEY);
-    console.log('FeedbackModal: Modal reset for this session');
+    console.log("FeedbackModal: Modal reset for this session");
   };
 
   // Полный сброс состояния
@@ -124,11 +137,14 @@ export const useFeedbackModal = (options: UseFeedbackModalOptions = {}) => {
     sessionStorage.removeItem(SESSION_KEY);
     setHasShown(false);
     setCanShow(true);
-    console.log('FeedbackModal: Cooldown and session reset');
+    console.log("FeedbackModal: Cooldown and session reset");
   };
 
   // Получить оставшееся время до следующего показа
-  const getTimeUntilNextShow = (): { hours: number; minutes: number } | null => {
+  const getTimeUntilNextShow = (): {
+    hours: number;
+    minutes: number;
+  } | null => {
     try {
       const lastShownStr = localStorage.getItem(FEEDBACK_MODAL_KEY);
       if (!lastShownStr) return null;
@@ -140,13 +156,18 @@ export const useFeedbackModal = (options: UseFeedbackModalOptions = {}) => {
 
       if (hoursDiff >= cooldownHours) return null;
 
-      const remainingMs = (cooldownHours * 60 * 60 * 1000) - timeDiff;
+      const remainingMs = cooldownHours * 60 * 60 * 1000 - timeDiff;
       const hours = Math.floor(remainingMs / (1000 * 60 * 60));
-      const minutes = Math.floor((remainingMs % (1000 * 60 * 60)) / (1000 * 60));
+      const minutes = Math.floor(
+        (remainingMs % (1000 * 60 * 60)) / (1000 * 60)
+      );
 
       return { hours, minutes };
     } catch (error) {
-      console.error('FeedbackModal: Error calculating time until next show:', error);
+      console.error(
+        "FeedbackModal: Error calculating time until next show:",
+        error
+      );
       return null;
     }
   };

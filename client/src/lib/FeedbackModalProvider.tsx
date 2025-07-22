@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { useFeedbackModal } from './hooks/useFeedbackModal';
-import FeedbackModal from '../app/ui/FeedbackModal';
+import FeedbackModal from '../components/FeedbackModal';
 
 interface FeedbackModalProviderProps {
   children: React.ReactNode;
@@ -21,8 +21,7 @@ export const FeedbackModalProvider: React.FC<FeedbackModalProviderProps> = ({
     showModal, 
     setShowModal, 
     canShow,
-    closeModal,
-    hasShown 
+
   } = useFeedbackModal({ delay, disabled, cooldownHours });
 
   // Логируем изменения состояния
@@ -41,7 +40,6 @@ export const FeedbackModalProvider: React.FC<FeedbackModalProviderProps> = ({
         <FeedbackModal 
           showModal={showModal} 
           setShowModal={setShowModal}
-          onClose={closeModal}
         />
       )}
     </>

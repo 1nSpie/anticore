@@ -18,7 +18,8 @@ const blog_module_1 = require("./blog/blog.module");
 const works_module_1 = require("./works/works.module");
 const video_controller_1 = require("./video/video.controller");
 const image_module_1 = require("./image/image.module");
-const feedback_module_1 = require("./feedback/feedback.module");
+const static_module_1 = require("./static/static.module");
+const telegram_module_1 = require("./telegram/telegram.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -32,7 +33,8 @@ exports.AppModule = AppModule = __decorate([
             blog_module_1.BlogModule,
             works_module_1.WorksModule,
             image_module_1.ImageModule,
-            feedback_module_1.FeedbackModule,
+            static_module_1.StaticModule,
+            telegram_module_1.TelegramModule,
         ],
         controllers: [video_controller_1.VideoController],
         providers: [

@@ -10,7 +10,8 @@ import { BlogModule } from './blog/blog.module';
 import { WorksModule } from './works/works.module';
 import { VideoController } from './video/video.controller';
 import { ImageModule } from './image/image.module';
-import { FeedbackModule } from './feedback/feedback.module';
+import { StaticModule } from './static/static.module';
+import { TelegramModule } from './telegram/telegram.module';
 
 @Module({
   imports: [
@@ -21,7 +22,8 @@ import { FeedbackModule } from './feedback/feedback.module';
     BlogModule,
     WorksModule,
     ImageModule,
-    FeedbackModule,
+    StaticModule,
+    TelegramModule,
   ],
   controllers: [VideoController],
   providers: [
